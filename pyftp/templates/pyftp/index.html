@@ -1,0 +1,101 @@
+{% extends "pyftp/base.html" %}
+
+{% block page %}
+    <!-- END Header -->
+    <div class="breadcrumbs">
+        Home
+    </div>
+    {% if file_removed or file_uploaded %}
+    <ul class="messagelist">
+        {% if file_uploaded %}
+        <li class="success">The file "<a href="{% url 'pyftp:download_file' file_uploaded.0 %}">{{ file_uploaded.1 }}</a>" was uploaded successfully.</li>
+        {% endif %}
+        {% if file_removed %}
+        <li class="warning">The file "{{ file_removed }}" was removed.</li>
+        {% endif %}
+    </ul>
+    {% endif %}
+    <!-- Content -->
+    <div id="content" class="flex">
+        <h1>File storage</h1>
+        <div id="content-main">
+            {% if user.is_staff %}
+            <ul class="object-tools">
+                <li><a href="/upload/" class="addlink">Add file</a></li>
+            </ul>
+            {% endif %}
+            <div class="module" id="changelist">
+                <div id="toolbar">
+                    <form id="changelist-search" method="get">{% csrf_token %}
+                        <div><!-- DIV needed for valid HTML -->
+                            <label for="searchbar"><img src="/static/admin/img/search.svg" alt="Search"/></label>
+                            <input type="text" size="40" name="q" value="{{ search }}" id="searchbar" autofocus/>
+                            <input type="submit" value="Search"/>
+                        </div>
+                    </form>
+                </div>
+
+                <form id="changelist-form" method="post" novalidate>{% csrf_token %}
+                    <div class="results">
+                        <table id="result_list">
+                            <thead>
+                            <tr>
+                                <th scope="col" class="sortable column-file_name">
+                                    <div class="text">Title</div>
+                                    <div class="clear"></div>
+                                </th>
+                                <th scope="col" class="sortable column-upload_date">
+                                    <div class="text">Upload date</div>
+                                    <div class="clear"></div>
+                                </th>
+                                <th scope="col" class="sortable column-notes">
+                                    <div class="text">File notes</div>
+                                    <div class="clear"></div>
+                                </th>
+                                <th scope="col" class="sortable column-notes">
+                                    <div class="text">Download counter</div>
+                                    <div class="clear"></div>
+                                </th>
+                                <th scope="col" class="sortable column-notes">
+                                    <div class="text">Source</div>
+                                    <div class="clear"></div>
+                                </th>
+                                {% if user.is_staff %}
+                                <th scope="col" class="sortable column-notes">
+                                    <div class="text"></div>
+                                    <div class="clear"></div>
+                                </th>
+                                {% endif %}
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for f in files %}
+                            <tr class="row{{ forloop.counter }}">
+                                <th class="field-file_name" valign="center">{{ f.file_name }}</th>
+                                <td class="field-upload_date nowrap" valign="center">{{ f.upload_date }}</td>
+                                <td class="field-notes" valign="center">{{ f.notes }}</td>
+                                <td class="field-count" valign="center">{{ f.count }}</td>
+                                <td class="field-file" valign="center">
+                                    <a href="{% url 'pyftp:download_file' f.id %}" id="dl_file">{{ f.file }}</a>
+                                </td>
+                                {% if user.is_staff %}
+                                <td class="field-file" valign="center">
+                                    <input type="button" onclick="location.href='{% url 'pyftp:remove' f.id %}';" value="Remove" />
+                                </td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="paginator">
+                        Count of files: {{ files.count }}
+                    </p>
+                </form>
+            </div>
+        </div>
+        <br class="clear"/>
+    </div>
+    <!-- END Content -->
+    <div id="footer"></div>
+{% endblock %}
