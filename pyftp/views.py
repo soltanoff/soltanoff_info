@@ -10,6 +10,9 @@ from django.views.decorators.csrf import csrf_protect
 from pyftp.models import FileModel
 
 
+# TODO: soltanoff: use AJAX -> https://simpleisbetterthancomplex.com/tutorial/2016/08/29/how-to-work-with-ajax-request-with-django.html
+
+
 @csrf_protect
 @login_required
 def index(request):
