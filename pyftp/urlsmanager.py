@@ -2,6 +2,8 @@ from django.conf.urls import url
 
 from . import views
 
+
+# TODO: change urls, move `pyftp` to subdomen
 app_name = 'pyftp'
 urlpatterns = [
     url(r'^$', views.index, name='index'),
