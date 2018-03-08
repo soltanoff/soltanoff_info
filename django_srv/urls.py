@@ -19,8 +19,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 
 urlpatterns = [
+    url(r'', include('blog.urlsmanager')),
     url(r'^accounts/', include('account.urlsmanager')),
-    # url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^ftp/', include('pyftp.urlsmanager')),
     url(r'^manage/', admin.site.urls)
 ]

@@ -29,6 +29,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'blog.apps.BlogConfig',
     'account.apps.AccountConfig',
     'pyftp.apps.PyftpConfig',
     'django.contrib.admin',
