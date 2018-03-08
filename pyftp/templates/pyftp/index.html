@@ -21,7 +21,7 @@
         <div id="content-main">
             {% if user.is_staff %}
             <ul class="object-tools">
-                <li><a href="/upload/" class="addlink">Add file</a></li>
+                <li><a href="{% url 'pyftp:upload' %}" class="addlink">Add file</a></li>
             </ul>
             {% endif %}
             <div class="module" id="changelist">

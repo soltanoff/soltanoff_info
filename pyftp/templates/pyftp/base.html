@@ -31,12 +31,12 @@
     <!-- Header -->
     <div id="header">
         <div id="branding">
-            <h1 id="site-name"><a href="/">PyFTP, 4730M</a></h1>
+            <h1 id="site-name"><a href="{% url 'pyftp:index' %}">PyFTP, 4730M</a></h1>
         </div>
         <div id="user-tools">
             Welcome,
             <strong>{% firstof user.get_short_name user.get_username %}</strong>.
-            <a href="accounts/logout/">/ Log out</a>
+            <a href="{% url 'account:logout' %}">/ Log out</a>
         </div>
     </div>
 </div>
