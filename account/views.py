@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from django.contrib import auth
-from django.http import HttpResponseNotFound
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_protect
