@@ -1,18 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.contrib import auth
 from django.contrib.auth.decorators import login_required
-from django.http.response import HttpResponse, HttpResponseRedirect, Http404
+from django.http.response import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_protect
 
 from pyftp.models import FileModel
 
 
-# TODO: soltanoff: use AJAX -> https://simpleisbetterthancomplex.com/tutorial/2016/08/29/how-to-work-with-ajax-request-with-django.html
-
-
+# TODO: soltanoff: use AJAX  https://simpleisbetterthancomplex.com/tutorial/2016/08/29/how-to-work-with-ajax-request-with-django.html
+# TODO: view
 @csrf_protect
 @login_required
 def index(request):
@@ -72,29 +70,6 @@ def remove(request, file_id):
         return index(request)
     else:
         raise Http404
-
-
-@csrf_protect
-def login(request):
-    username = request.POST.get('username', '')
-    password = request.POST.get('password', '')
-    error_msg = False
-
-    user = auth.authenticate(username=username, password=password)
-    if user is not None and user.is_active:
-        auth.login(request, user)
-        return HttpResponseRedirect("/")
-
-    if username and password and user is None:
-        error_msg = True
-
-    return render(request, 'pyftp/login.html', {'error': error_msg})
-
-
-@csrf_protect
-def logout(request):
-    auth.logout(request)
-    return HttpResponseRedirect("/accounts/login/")
 
 
 @csrf_protect
