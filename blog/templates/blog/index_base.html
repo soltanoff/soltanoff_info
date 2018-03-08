@@ -1,0 +1,30 @@
+{% extends "blog/base.html" %}
+
+{% load staticfiles %}
+
+{% block extrastyle %}{{ block.super }} <link rel="stylesheet" href="{% static 'css/modify.css' %}">{% endblock %}
+
+{% block content %}
+    <h1>Article storage</h1>
+    <div id="content-main">
+        {% if user.is_staff %}
+        <ul class="object-tools">
+            <li><a href="{% url 'blog:index' %}" class="addlink">Add article</a></li>
+        </ul>
+        {% endif %}
+        <div class="module" id="changelist">
+            <div id="toolbar">
+                <form id="changelist-search" method="get">{% csrf_token %}
+                    <div><!-- DIV needed for valid HTML -->
+                        <label for="searchbar"><img src="{% static "admin/img/search.svg" %}" alt="Search"/></label>
+                        <input type="text" style="width:auto" name="q" value="{{ search }}" id="searchbar" autofocus/>
+                        <input type="submit" value="Search"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        {% block page %}
+        {% endblock %}
+    </div>
+{% endblock %}

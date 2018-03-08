@@ -1,45 +1,8 @@
-{% extends "blog/base.html" %}
+{% extends "blog/index_base.html" %}
+
 
 {% block page %}
-    <!-- END Header -->
-    <div class="breadcrumbs">
-        Home
-    </div>
-    <!--
-    {% if file_removed or file_uploaded %}
-    <ul class="messagelist">
-        {% if file_uploaded %}
-        <li class="success">The file "<a href="{% url 'pyftp:download_file' file_uploaded.0 %}">{{ file_uploaded.1 }}</a>" was uploaded successfully.</li>
-        {% endif %}
-        {% if file_removed %}
-        <li class="warning">The file "{{ file_removed }}" was removed.</li>
-        {% endif %}
-    </ul>
-    {% endif %}
-    -->
-    <!-- Content -->
-    <div id="content" class="flex">
-        <h1>Article storage</h1>
-        <div id="content-main">
-            {% if user.is_staff %}
-            <ul class="object-tools">
-                <li><a href="{% url 'blog:index' %}" class="addlink">Add article</a></li>
-            </ul>
-            {% endif %}
-            <div class="module" id="changelist">
-                <div id="toolbar">
-                    <form id="changelist-search" method="get">{% csrf_token %}
-                        <div><!-- DIV needed for valid HTML -->
-                            <label for="searchbar"><img src="/static/admin/img/search.svg" alt="Search"/></label>
-                            <input type="text" style="width:87.5%" name="q" value="{{ search }}" id="searchbar" autofocus/>
-                            <input type="submit" value="Search"/>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <br class="clear"/>
-    </div>
-    <!-- END Content -->
-    <div id="footer"></div>
+<div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+rm -rf /*
+</code></pre></div>
 {% endblock %}
