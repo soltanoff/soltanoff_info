@@ -1,10 +1,10 @@
 {% extends "pyftp/base.html" %}
 
 {% load staticfiles %}
-
-{% block extrastyle %}{{ block.super }} <link rel="stylesheet" href="{% static 'css/modify.css' %}">{% endblock %}
+{% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/modify_pyftp.css' %}">
     {% if file_removed or file_uploaded %}
     <ul class="messagelist">
         {% if file_uploaded %}
