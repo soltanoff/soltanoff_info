@@ -12,13 +12,9 @@ from django.views.decorators.csrf import csrf_protect
 def login(request):
     username = request.POST.get('username', '')
     password = request.POST.get('password', '')
-    redirect_url = request.GET.get('next', None)
+    redirect_url = request.GET.get('next', '/')
     error_msg = False
-
     user = auth.authenticate(username=username, password=password)
-
-    if not redirect_url:
-        return HttpResponseNotFound('<h1>No Page Here</h1>')
 
     if user is not None and user.is_active:
         auth.login(request, user)
@@ -33,4 +29,4 @@ def login(request):
 @csrf_protect
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect("../login")
+    return HttpResponseRedirect("/")
