@@ -1,49 +1,21 @@
-<!DOCTYPE html>
-{% load staticfiles %}
-<html lang="en-us">
-<head>
-    <title>PyFTP</title>
-    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/admin/css/changelists.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" />
-    <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css" />
+{% extends "admin/base.html" %}
 
-    <script type="text/javascript" src="/admin/jsi18n/"></script>
-    <script type="text/javascript" src="/static/admin/js/core.js"></script>
-    <script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
-    <script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
-    <script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
-    <script type="text/javascript" src="/static/admin/js/actions.js"></script>
-    <script type="text/javascript" src="/static/admin/js/urlify.js"></script>
-    <script type="text/javascript" src="/static/admin/js/prepopulate.js"></script>
-    <script type="text/javascript" src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
-    <script type="text/javascript" src="/static/admin/js/calendar.js"></script>
-    <script type="text/javascript" src="/static/admin/js/admin/DateTimeShortcuts.js"></script>
-    <script type="text/javascript" src="/static/admin/js/collapse.js"></script>
+{% block title %}PyFTP, 4730M{% endblock %}
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</head>
+{% block branding %} <h1 id="site-name">PyFTP, 4730M</h1> {% endblock %}
 
-<body class=" app-pyftp model-filemodel change-list" data-admin-utc-offset="0">
+{% block breadcrumbs %} <div class="breadcrumbs">Home</div> {% endblock %}
 
-
-<div id="container" style="min-width: 0;">
-    <!-- Header -->
-    <div id="header">
-        <div id="branding">
-            <h1 id="site-name"><a href="{% url 'pyftp:index' %}">PyFTP, 4730M</a></h1>
-        </div>
-        <div id="user-tools">
-            Welcome,
-            <strong>{% firstof user.get_short_name user.get_username %}</strong>.
-            <a href="{% url 'account:logout' %}">/ Log out</a>
-        </div>
-    </div>
+{% block usertools %}
+<div id="user-tools">
+    {% block welcome-msg %}
+        Welcome,
+        <strong>{% firstof user.get_short_name user.get_username %}</strong>.
+    {% endblock %}
+    {% block userlinks %}
+        {% if user.is_staff %} <a href="{% url 'admin:index' %}">Manage</a> / {% endif %}
+        <a href="{% url 'blog:index' %}">Blog</a>
+        / <a href="{% url 'account:logout' %}">Log out</a>
+    {% endblock %}
 </div>
-
-{% block page %}
 {% endblock %}
-
-<!-- END Container -->
-</body>
-</html>

@@ -1,10 +1,10 @@
 {% extends "pyftp/base.html" %}
 
-{% block page %}
-    <!-- END Header -->
-    <div class="breadcrumbs">
-        Home
-    </div>
+{% load staticfiles %}
+
+{% block extrastyle %}{{ block.super }} <link rel="stylesheet" href="{% static 'css/modify.css' %}">{% endblock %}
+
+{% block content %}
     {% if file_removed or file_uploaded %}
     <ul class="messagelist">
         {% if file_uploaded %}
@@ -15,8 +15,6 @@
         {% endif %}
     </ul>
     {% endif %}
-    <!-- Content -->
-    <div id="content" class="flex">
         <h1>File storage</h1>
         <div id="content-main">
             {% if user.is_staff %}
@@ -28,8 +26,8 @@
                 <div id="toolbar">
                     <form id="changelist-search" method="get">{% csrf_token %}
                         <div><!-- DIV needed for valid HTML -->
-                            <label for="searchbar"><img src="/static/admin/img/search.svg" alt="Search"/></label>
-                            <input type="text" style="width:87.5%" name="q" value="{{ search }}" id="searchbar" autofocus/>
+                            <label for="searchbar"><img src="{% static "admin/img/search.svg" %}" alt="Search"/></label>
+                            <input type="text" style="width:auto" name="q" value="{{ search }}" id="searchbar" autofocus/>
                             <input type="submit" value="Search"/>
                         </div>
                     </form>
@@ -37,7 +35,7 @@
 
                 <form id="changelist-form" method="post" novalidate>{% csrf_token %}
                     <div class="results">
-                        <table id="result_list">
+                        <table id="result_list" style="margin:auto; width:100%; height:100%;">
                             <thead>
                             <tr>
                                 <th scope="col" class="sortable column-file_name">
@@ -79,7 +77,7 @@
                                     <a href="{% url 'pyftp:download_file' f.id %}" id="dl_file">{{ f.file }}</a>
                                 </td>
                                 {% if user.is_staff %}
-                                <td class="field-file" valign="center">
+                                <td class="field-file" valign="center" align="right">
                                     <input type="button" onclick="location.href='{% url 'pyftp:remove' f.id %}';" value="Remove" />
                                 </td>
                                 {% endif %}
@@ -95,7 +93,4 @@
             </div>
         </div>
         <br class="clear"/>
-    </div>
-    <!-- END Content -->
-    <div id="footer"></div>
 {% endblock %}
