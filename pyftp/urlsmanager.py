@@ -1,8 +1,9 @@
 from django.urls import path
 
+from pyftp.apps import PyftpConfig
 from . import views
 
-app_name = 'pyftp'
+app_name = PyftpConfig.name
 urlpatterns = [
     path(r'', views.index, name='index'),
     path(r'upload/', views.upload, name='upload'),
