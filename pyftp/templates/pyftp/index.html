@@ -29,7 +29,7 @@
                     <form id="changelist-search" method="get">{% csrf_token %}
                         <div><!-- DIV needed for valid HTML -->
                             <label for="searchbar"><img src="/static/admin/img/search.svg" alt="Search"/></label>
-                            <input type="text" size="40" name="q" value="{{ search }}" id="searchbar" autofocus/>
+                            <input type="text" style="width:87.5%" name="q" value="{{ search }}" id="searchbar" autofocus/>
                             <input type="submit" value="Search"/>
                         </div>
                     </form>
