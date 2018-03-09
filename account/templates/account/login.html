@@ -1,28 +1,26 @@
-<!DOCTYPE html>
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
 
-<html lang="en-us">
-<head>
-    <title>Log in | PyFTP, 4730M</title>
-    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/admin/css/login.css"/>
+{% block title %}Log in...{% endblock %}
 
-    <meta name="robots" content="NONE,NOARCHIVE"/>
-</head>
+{% block branding %} <h1 id="site-name">Log in...</h1> {% endblock %}
 
+{% block extrastyle %}{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static " admin/css/login.css" %}" />
+{{ form.media }}
+{% endblock %}
 
-<body class=" login" data-admin-utc-offset="0">
+{% block bodyclass %}{{ block.super }} login {% endblock %}
 
-<!-- Container -->
-<div id="container">
-    <!-- Header -->
-    <div id="header">
-        <div id="branding">
-            <h1 id="site-name">Log in...</h1>
-        </div>
-    </div>
-    <!-- END Header -->
-    <!-- Content -->
-    <div id="content" class="colM">
+{% block usertools %}{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block content_title %}{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
         {% if error %}
         <p class="errornote">
             Please enter the correct username or password.
@@ -45,12 +43,4 @@
                 </div>
             </form>
         </div>
-        <br class="clear"/>
-    </div>
-    <!-- END Content -->
-    <div id="footer"></div>
-</div>
-<!-- END Container -->
-
-</body>
-</html>
+{% endblock %}
