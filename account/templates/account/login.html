@@ -1,24 +1,10 @@
-{% extends "admin/base_site.html" %}
+{% extends "admin/login.html" %}
+
 {% load i18n static %}
 
 {% block title %}Log in...{% endblock %}
 
 {% block branding %} <h1 id="site-name">Log in...</h1> {% endblock %}
-
-{% block extrastyle %}{{ block.super }}
-<link rel="stylesheet" type="text/css" href="{% static " admin/css/login.css" %}" />
-{{ form.media }}
-{% endblock %}
-
-{% block bodyclass %}{{ block.super }} login {% endblock %}
-
-{% block usertools %}{% endblock %}
-
-{% block nav-global %}{% endblock %}
-
-{% block content_title %}{% endblock %}
-
-{% block breadcrumbs %}{% endblock %}
 
 {% block content %}
         {% if error %}
