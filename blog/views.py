@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_protect
 from pyftp.models import FileModel
 
 
-# TODO: blog logic
+# TODO: blog logic + comment + pages + ajax + picture
 @csrf_protect
 def index(request):
     search_param = request.GET.get('q', '')
