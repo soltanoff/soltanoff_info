@@ -1,0 +1,24 @@
+{% extends "blog/index_base.html" %}
+
+
+{% block breadcrumbs %}
+<div class="breadcrumbs"><a href="{% url 'blog:index' %}">Home</a> › {{ postmodel.title }}</div> {% endblock %}
+
+{% block page %}
+<div class="post-top">
+    <div class="post-title">
+        <div class="left">
+            <h2 style="font-size: 25px;">{{ postmodel.title }}</h2>
+            <div style="float: left;">
+                <p>{{ postmodel.datetime }}</p>
+            </div>
+            <div style="float: right;"></div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+</div>
+<div class="entry">
+    <p>{{ postmodel.getAllContent | safe }}</p>
+</div>
+<input type="submit" value="Back ..." class="default" name="_save">
+{% endblock %}
