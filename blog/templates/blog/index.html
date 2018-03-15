@@ -2,7 +2,26 @@
 
 
 {% block page %}
-<div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-rm -rf /*
-</code></pre></div>
+{% for post in posts %}
+<div class="text-block">
+    <div class="post-top">
+        <div class="post-title">
+            <div class="left">
+                <h2><a href="{{ post.getUrl }}">{{ post.title }}</a></h2>
+                <div style="float: left;">
+                    <p>{{ post.datetime }}</p>
+                </div>
+                <div style="float: right;"></div>
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="entry">
+        <p>{{ post.entry|safe }}</p>
+    </div>
+
+    <input type="submit" value="More ..." class="default" name="_save">
+</div>
+{% endfor %}
 {% endblock %}
