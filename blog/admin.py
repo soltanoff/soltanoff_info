@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 
-from blog.models import Post
+from blog.models import PostModel
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -10,8 +10,8 @@ class PostAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ['title']}),
         ('Date information', {'fields': ['datetime'], 'classes': ['expand']}),
-        ('Content', {'fields': ['content'], 'classes': ['expand']})
+        ('Content', {'fields': ['entry', 'content'], 'classes': ['expand']})
     ]
 
 
-admin.site.register(Post, PostAdmin)
+admin.site.register(PostModel, PostAdmin)
