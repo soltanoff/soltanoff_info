@@ -1,25 +1,49 @@
 # -*- coding: utf-8 -*-
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_protect
+from django.views.generic import DetailView
 
-from pyftp.models import FileModel
+from blog.models import PostModel
+
+
+class PostDetailView(DetailView):
+    model = PostModel
 
 
 @csrf_protect
 def index(request):
     search_param = request.GET.get('q', '')
-    if search_param:
-        files = FileModel.objects.filter(file_name__contains=search_param)
-    else:
-        files = FileModel.objects.all()
 
     return render(
         request,
         'blog/index.html',
         {
-            'files': files,
             'search': search_param,
-            'file_removed': request.file_removed if hasattr(request, 'file_removed') else '',
-            'file_uploaded': request.file_uploaded if hasattr(request, 'file_uploaded') else []
+            'posts': PostModel.objects.all()
+        }
+    )
+
+
+@csrf_protect
+@login_required
+def upload(request):
+    title = request.POST.get('title', '')
+    entry = request.POST.get('entry', '')
+    content = request.POST.get('content', '')
+    if title.strip() and entry.strip() and content.strip():
+        article = PostModel(title=title, entry=entry, content=content)
+        article.save()
+        request.file_uploaded = [article.id, article.title]
+        return index(request)
+
+    return render(
+        request,
+        'blog/upload.html',
+        {
+            'errors': bool(title or entry or content),
+            'article_title': title,
+            'article_entry': entry,
+            'article_content': content
         }
     )
