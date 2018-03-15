@@ -22,9 +22,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '90)228yq1(j%px#zzqxn_c=-+qivz46vn_=-7hwvr%qb@&va^x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+
+# DISQUS_API_KEY = '***'
+# DISQUS_WEBSITE_SHORTNAME = '***'
 
 # Application definition
 
@@ -32,6 +35,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'account.apps.AccountConfig',
     'pyftp.apps.PyftpConfig',
+    # 'disqus',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -105,9 +109,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'Europe/Moscow'
+
+DATETIME_FORMAT = '%d-%m-%Y %H:%M:S'
 
 USE_I18N = True
 

@@ -22,7 +22,7 @@ td, th {
     align-self: center;
 }
 
-.button, input[type=submit], input[type=button], .submit-row input, a.button {
+.button, input[type=submit], input[type=button], .text-block input, a.button {
     background: #79aec8;
     padding: 6px 15px;
     border: none;
@@ -38,4 +38,127 @@ td, th {
     border-bottom: 1px solid #eee;
     background: #f8f8f8;
     color: #966;
+}
+
+.post{
+  width:100%;
+  margin:0 0 10px 0;
+}
+
+.post-top{
+  width:100%;
+}
+
+.post-title{
+  width:100%;
+  overflow:hidden;
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+}
+
+.post-title .left h2{
+  font-size:20px;
+  color:#000;
+  font-weight:normal;
+  padding: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.post-title .left p {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #444;
+  clear: both;
+}
+
+.post-title .left {
+  color:#000;
+}
+
+.entry{
+  line-height:20px;
+  font-size:14px;
+  color: #222222;
+  text-align: justify;
+}
+
+.entry p{
+  padding-bottom:10px;
+}
+
+.entry p a{
+  text-decoration:underline;
+}
+
+.entry p a:hover {
+  text-decoration:none;
+}
+
+.postmetadata{
+  overflow:hidden;
+  text-align:center;
+  // border-bottom: 1px dotted #ccc;
+  padding: 0px 0px 10px 0px;
+}
+
+.postmetadata a{
+  color: #447e9b;
+  font-size:12px;
+
+  font-weight:bold;
+}
+
+.entry strong{
+  color:#222222;
+}
+
+.text-block {
+    padding: 12px 14px;
+    margin: 0 0 20px;
+    background: #f8f8f8;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    // text-align: right;
+    overflow: hidden;
+}
+
+body.popup .text-block {
+    overflow: auto;
+}
+
+.text-block input {
+    height: 35px;
+    line-height: 15px;
+    margin: 0 0 0 5px;
+}
+
+.text-block input.default {
+    margin: 0 0 0 8px;
+    text-transform: uppercase;
+}
+
+.text-block p {
+    margin: 0.3em;
+}
+
+.text-block p.deletelink-box {
+    float: left;
+    margin: 0;
+}
+
+.text-block a.deletelink {
+    display: block;
+    background: #ba2121;
+    border-radius: 4px;
+    padding: 10px 15px;
+    height: 15px;
+    line-height: 15px;
+    color: #fff;
+}
+
+.text-block a.deletelink:focus,
+.text-block a.deletelink:hover,
+.text-block a.deletelink:active {
+    background: #a41515;
 }
