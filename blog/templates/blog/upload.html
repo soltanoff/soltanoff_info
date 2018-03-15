@@ -1,0 +1,124 @@
+{% extends "blog/index_base.html" %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs"><a href="{% url 'blog:index' %}">Home</a> › Add article</div> {% endblock %}
+
+{% load i18n admin_urls static admin_modify %}
+
+{% block extrastyle %}{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static " admin/css/forms.css" %}" />{% endblock %}
+
+{% block content %}
+<h1>Add article</h1>
+<div id="content-main">
+    <form enctype="multipart/form-data" action="" method="post" id="postmodel_form" novalidate="">{% csrf_token %}
+        <div>
+            {% if errors %}
+            <p class="errornote">Please correct the errors below.</p>
+            {% endif %}
+            <fieldset class="module aligned ">
+                {% if errors and not article_title %}
+                <div class="form-row errors field-title">
+                    <ul class="errorlist">
+                        <li>This field is required.</li>
+                    </ul>
+                    {% else %}
+                    <div class="form-row field-title">
+                        {% endif %}
+                        <div>
+                            <label class="required" for="id_title">Title:</label>
+                            <input type="text" name="title" value="{{ article_title }}" class="vTextField"
+                                   maxlength="255" required="" id="id_title">
+                        </div>
+                    </div>
+            </fieldset>
+            <!--
+            <fieldset class="module aligned expand">
+                <h2>Date information</h2>
+                <div class="form-row field-datetime">
+                    <div>
+                        <label class="required" for="id_datetime_0">Publication date:</label>
+                        <p class="datetime">
+                            Дата: <input type="text"
+                                         name="datetime_0"
+                                         value="15.03.2018"
+                                         class="vDateField"
+                                         size="10"
+                                         required=""
+                                         id="id_datetime_0">
+                            <span class="datetimeshortcuts">&nbsp;<a href="#">Сегодня</a>&nbsp;|&nbsp;<a href="#" id="calendarlink0"><span class="date-icon" title="Выберите дату"></span></a></span>
+                            <br>
+                            Время: <input type="text"
+                                          name="datetime_1"
+                                          value="20:29:07"
+                                          class="vTimeField"
+                                          size="8"
+                                          required=""
+                                          id="id_datetime_1">
+                            <span class="datetimeshortcuts">&nbsp;<a href="#">Сейчас</a>&nbsp;|&nbsp;<a href="#" id="clocklink0"><span class="clock-icon" title="Выберите время"></span></a></span>
+                        </p><input type="hidden"
+                                   name="initial-datetime_0"
+                                   value="15.03.2018"
+                                   id="initial-id_datetime_0">
+                        <input type="hidden" name="initial-datetime_1" value="20:29:07" id="initial-id_datetime_1">
+                    </div>
+                </div>
+            </fieldset>
+            -->
+            <fieldset class="module aligned expand">
+                <h2>Content</h2>
+                {% if errors and not article_entry %}
+                <div class="form-row errors field-entry">
+                    <ul class="errorlist">
+                        <li>This field is required.</li>
+                    </ul>
+                    {% else %}
+                    <div class="form-row field-entry">
+                        {% endif %}
+                        <div>
+                            <label class="required" for="id_entry">Entry:</label>
+                            <textarea name="entry"
+                                      cols="40"
+                                      rows="10"
+                                      class="vLargeTextField"
+                                      maxlength="2000"
+                                      required=""
+                                      id="id_entry">{{ article_entry }}</textarea>
+                        </div>
+                    </div>
+                    {% if errors and not article_content %}
+                    <div class="form-row errors field-content">
+                        <ul class="errorlist">
+                            <li>This field is required.</li>
+                        </ul>
+                        {% else %}
+                        <div class="form-row field-content">
+                            {% endif %}
+                            <div>
+                                <label class="required" for="id_content">Content:</label>
+                                <textarea name="content"
+                                          cols="40"
+                                          rows="10"
+                                          class="vLargeTextField"
+                                          maxlength="100000"
+                                          required="" id="id_content">{{ article_content }}</textarea>
+                            </div>
+                        </div>
+            </fieldset>
+            <div class="submit-row">
+                <input type="submit" value="Save" class="default" name="_save">
+            </div>
+            <script type="text/javascript"
+                    id="django-admin-form-add-constants"
+                    src="/static/admin/js/change_form.js"
+                    data-model-name="postmodel">
+            </script>
+            <script type="text/javascript"
+                    id="django-admin-prepopulated-fields-constants"
+                    src="/static/admin/js/prepopulate_init.js"
+                    data-prepopulated-fields="[]">
+            </script>
+        </div>
+    </form>
+</div>
+{% endblock %}
