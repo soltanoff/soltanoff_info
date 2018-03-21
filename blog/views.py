@@ -12,6 +12,7 @@ class PostDetailView(DetailView):
 
 
 # TODO: blog logic + comment + pages + ajax + picture
+# TODO: move to django View
 @csrf_protect
 def index(request):
     search_param = request.GET.get('q', '')
