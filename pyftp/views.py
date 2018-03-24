@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 from django.http.response import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_protect
+from django.views.generic import CreateView
 
+from pyftp.forms import FileForm
 from pyftp.models import FileModel
 
 
@@ -18,6 +21,12 @@ def index(request):
     else:
         files = FileModel.objects.all()
 
+    add_file_param = request.GET.get('add', '')
+    if add_file_param:
+        file = FileModel.objects.get(pk=add_file_param)
+        if file:
+            request.file_uploaded = [file.id, file.file_name]
+
     return render(
         request,
         'pyftp/index.html',
@@ -30,30 +39,29 @@ def index(request):
     )
 
 
-@csrf_protect
-@login_required
-def upload(request):
-    file = request.FILES.get('file', None)
-    file_name = request.POST.get('file_name', '')
-    notes = request.POST.get('notes', '')
+class FileCreateView(CreateView):
+    template_name = "pyftp/upload.html"
+    model = FileModel
+    form = None
+    fields = ["file_name", "notes", "file"]
+    success_url = "../"
 
-    if file and file_name and notes:
-        file_model = FileModel(file_name=file_name, notes=notes, file=file)
-        file_model.save()
+    def get_context_data(self, **kwargs):
+        context = super(FileCreateView, self).get_context_data(**kwargs)
+        context["form"] = self.form
+        return context
 
-        request.file_uploaded = [file_model.id, file_model.file_name]
-        return index(request)
+    def get(self, request, *args, **kwargs):
+        self.form = FileForm()
+        return super(FileCreateView, self).get(request, *args, **kwargs)
 
-    return render(
-        request,
-        'pyftp/upload.html',
-        {
-            'errors': bool(file_name or notes or file),
-            'file': file,
-            'file_name': file_name,
-            'notes': notes
-        }
-    )
+    def post(self, request, *args, **kwargs):
+        self.form = FileForm(request.POST)
+        return super(FileCreateView, self).post(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        self.object = form.save()
+        return HttpResponseRedirect(self.get_success_url() + '?add=%s' % self.object.pk)
 
 
 @csrf_protect
