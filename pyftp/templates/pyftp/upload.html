@@ -8,67 +8,34 @@
 <h1>Upload file</h1>
 <div id="content-main">
     <form enctype="multipart/form-data" action="" method="post" id="filemodel_form" novalidate>{% csrf_token %}
-        <div>
-            {% if errors %}
-            <p class="errornote">Please correct the errors below.</p>
+        <fieldset class="module aligned ">
+            {% for field in form %}
+            {% if forloop.last %}
+        </fieldset>
+        <fieldset class="module aligned "><h2>Storage</h2>
             {% endif %}
-            <fieldset class="module aligned ">
-                {% if errors and not file_name %}
-                <div class="form-row errors field-file_name">
-                    <ul class="errorlist"><li>This field is required.</li></ul>
+            {% if field.errors %}
+            <div class="form-row errors">
+                {{ field.errors }}
                 {% else %}
-                <div class="form-row field-file_name">
+                <div class="form-row">
                     {% endif %}
-                    <div>
-                        <label class="required" for="id_file_name">Title:</label>
-                        <input type="text" name="file_name" value="{{ file_name }}" class="vTextField" required id="id_file_name"
-                               maxlength="20"/>
-                    </div>
+                    <label class="required">{{ field.label }}</label>
+                    {{ field }}
                 </div>
-                {% if errors and not notes %}
-                <div class="form-row errors field-notes">
-                    <ul class="errorlist"><li>This field is required.</li></ul>
-                {% else %}
-                <div class="form-row field-notes">
-                    {% endif %}
-                    <div>
-                        <label class="required" for="id_notes">File notes:</label>
-                        <input type="text" name="notes" value="{{ notes }}" class="vTextField" required id="id_notes" maxlength="20"/>
-                    </div>
-                </div>
-            </fieldset>
-
-            <fieldset class="module aligned expand">
-                <h2>Storage</h2>
-                {% if errors and not file %}
-                <div class="form-row errors field-file">
-                    <ul class="errorlist"><li>This field is required.</li></ul>
-                {% else %}
-                <div class="form-row field-file">
-                    {% endif %}
-                    <div>
-                        <label class="required" for="id_file">Source:</label>
-                        <input type="file" name="file" id="id_file" required/>
-                    </div>
-                </div>
-            </fieldset>
-            <div class="submit-row">
-                <input type="submit" value="Upload" class="default" name="_save"/>
-            </div>
-            <script type="text/javascript"
-                    id="django-admin-form-add-constants"
-                    src="/static/admin/js/change_form.js"
-
-                    data-model-name="filemodel"
-            >
-            </script>
-            <script type="text/javascript"
-                    id="django-admin-prepopulated-fields-constants"
-                    src="/static/admin/js/prepopulate_init.js"
-                    data-prepopulated-fields="[]">
-            </script>
-        </div>
+                {% endfor %}
+        </fieldset>
+        <div class="submit-row"><input type="submit" value="Save" class="default" name="_save"></div>
+        <script type="text/javascript"
+                id="django-admin-form-add-constants"
+                src="/static/admin/js/change_form.js"
+                data-model-name="postmodel">
+        </script>
+        <script type="text/javascript"
+                id="django-admin-prepopulated-fields-constants"
+                src="/static/admin/js/prepopulate_init.js"
+                data-prepopulated-fields="[]">
+        </script>
     </form>
 </div>
-
 {% endblock %}
