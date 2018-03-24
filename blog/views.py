@@ -1,50 +1,48 @@
 # -*- coding: utf-8 -*-
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
-from django.views.decorators.csrf import csrf_protect
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView, CreateView
 
+from blog.forms import PostForm
 from blog.models import PostModel
 
 
 class PostDetailView(DetailView):
+    template_name = "blog/post.html"
     model = PostModel
+    context_object_name = "post"
+    slug_field = "title"
 
 
-# TODO: blog logic + comment + pages + ajax + picture
-@csrf_protect
-def index(request):
-    search_param = request.GET.get('q', '')
+class PostListView(ListView):
+    template_name = "blog/index.html"
+    model = PostModel
+    queryset = PostModel.objects.all()
+    context_object_name = "posts"
+    allow_empty = True
+    paginate_orphans = 10
+    page_kwarg = "p"
 
-    return render(
-        request,
-        'blog/index.html',
-        {
-            'search': search_param,
-            'posts': PostModel.objects.all()
-        }
-    )
+    def get_context_data(self, **kwargs):
+        context = super(PostListView, self).get_context_data(**kwargs)
+        context['search'] = self.request.GET.get('q', '')
+        return context
 
 
-@csrf_protect
-@login_required
-def upload(request):
-    title = request.POST.get('title', '')
-    entry = request.POST.get('entry', '')
-    content = request.POST.get('content', '')
-    if title.strip() and entry.strip() and content.strip():
-        article = PostModel(title=title, entry=entry, content=content)
-        article.save()
-        request.file_uploaded = [article.id, article.title]
-        return index(request)
+class PostCreateView(CreateView):
+    template_name = "blog/upload.html"
+    model = PostModel
+    form = None
+    fields = ["title", "entry", "content"]
+    success_url = "../"
 
-    return render(
-        request,
-        'blog/upload.html',
-        {
-            'errors': bool(title or entry or content),
-            'article_title': title,
-            'article_entry': entry,
-            'article_content': content
-        }
-    )
+    def get_context_data(self, **kwargs):
+        context = super(PostCreateView, self).get_context_data(**kwargs)
+        context["form"] = self.form
+        return context
+
+    def get(self, request, *args, **kwargs):
+        self.form = PostForm()
+        return super(PostCreateView, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        self.form = PostForm(request.POST)
+        return super(PostCreateView, self).post(request, *args, **kwargs)
