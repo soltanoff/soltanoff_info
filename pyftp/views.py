@@ -1,42 +1,40 @@
 # -*- coding: utf-8 -*-
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.messages import add_message
+from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponseRedirect
 from django.http.response import HttpResponse, Http404
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_protect
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 
 from pyftp.forms import FileForm
 from pyftp.models import FileModel
 
 
-# TODO: soltanoff: use AJAX  https://simpleisbetterthancomplex.com/tutorial/2016/08/29/how-to-work-with-ajax-request-with-django.html
-# TODO: view
-@csrf_protect
-@login_required
-def index(request):
-    search_param = request.GET.get('q', '')
-    if search_param:
-        files = FileModel.objects.filter(file_name__contains=search_param)
-    else:
-        files = FileModel.objects.all()
+# TODO: soltanoff: use AJAX https://simpleisbetterthancomplex.com/tutorial/2016/08/29/how-to-work-with-ajax-request-with-django.html
+class FileListView(SuccessMessageMixin, ListView):
+    template_name = "pyftp/index.html"
+    model = FileModel
+    queryset = FileModel.objects.all()
+    context_object_name = "files"
+    success_message = u"File \"<a href=\"{href}\">{title}</a>\" uploaded!"
 
-    add_file_param = request.GET.get('add', '')
-    if add_file_param:
-        file = FileModel.objects.get(pk=add_file_param)
-        if file:
-            request.file_uploaded = [file.id, file.file_name]
+    def get_success_message(self, cleaned_data):
+        post = FileModel.objects.get(**cleaned_data)
+        return self.success_message.format(href=post.getUrl(), title=cleaned_data['title'])
 
-    return render(
-        request,
-        'pyftp/index.html',
-        {
-            'files': files,
-            'search': search_param,
-            'file_removed': request.file_removed if hasattr(request, 'file_removed') else '',
-            'file_uploaded': request.file_uploaded if hasattr(request, 'file_uploaded') else []
-        }
-    )
+    def get_context_data(self, **kwargs):
+        context = super(FileListView, self).get_context_data(**kwargs)
+        context['search'] = self.request.GET.get('q', '')
+
+        if context['search']:
+            self.queryset = FileModel.objects.filter(file_name__icontains=context['search'])
+        else:
+            self.queryset = FileModel.objects.all()
+        context[self.context_object_name] = self.queryset
+        return context
 
 
 class FileCreateView(CreateView):
@@ -68,12 +66,14 @@ class FileCreateView(CreateView):
 @login_required
 def remove(request, file_id):
     if request.user.is_active and request.user.is_staff:
-        file_model = FileModel.objects.filter(id=file_id)
-        if len(file_model):
-            request.file_removed = "%s (%s)" % (file_model[0].file_name, file_model[0].file.name)
-
-        file_model.delete()
-        return index(request)
+        file = FileModel.objects.get(id=file_id)
+        file.delete()
+        add_message(
+            request,
+            messages.WARNING,
+            "File \"<b>{title}</b>\" is removed!".format(title=file.file_name)
+        )
+        return redirect("../../")
     else:
         raise Http404
 
