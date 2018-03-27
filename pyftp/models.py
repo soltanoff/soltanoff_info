@@ -13,3 +13,6 @@ class FileModel(models.Model):
 
     def __str__(self):
         return self.file_name
+
+    def getUrl(self):
+        return '/download_file/%s' % self.id
