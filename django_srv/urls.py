@@ -22,7 +22,9 @@ urlpatterns = [
     url(r'', include('blog.urlsmanager')),
     url(r'^accounts/', include('account.urlsmanager')),
     url(r'^ftp/', include('pyftp.urlsmanager')),
-    url(r'^manage/', admin.site.urls)
+    url(r'^manage/', admin.site.urls),
+    # TODO: soltanoff: added the login required for this way
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
