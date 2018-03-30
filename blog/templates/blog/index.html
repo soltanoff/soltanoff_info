@@ -21,7 +21,7 @@
         <p>{{ post.entry|safe }}</p>
     </div>
 
-    <input type="submit" value="More ..." class="default" name="_save">
+    <input type="button" onclick="location.href='{{ post.getUrl }}';" value="More ..." class="default">
 </div>
 {% endfor %}
 {% endblock %}
