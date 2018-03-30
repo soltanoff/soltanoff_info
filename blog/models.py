@@ -8,7 +8,7 @@ from django.db import models
 class PostModel(models.Model):
     title = models.CharField(max_length=255)
     datetime = models.DateTimeField('Publication date', default=datetime.now)
-    entry = models.TextField(max_length=2000, default='')
+    entry = RichTextUploadingField(max_length=2000, config_name='simple_toolbar')
     content = RichTextUploadingField(max_length=100000)
 
     def __unicode__(self):
