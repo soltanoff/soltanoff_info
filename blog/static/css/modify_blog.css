@@ -31,6 +31,13 @@ td, th {
     cursor: pointer;
 }
 
+.button.default, input[type=button].default, .submit-row input.default {
+    float: right;
+    border: none;
+    font-weight: 400;
+    background: #417690;
+}
+
 #changelist #toolbar {
     padding: 8px 10px;
     margin-bottom: 15px;
