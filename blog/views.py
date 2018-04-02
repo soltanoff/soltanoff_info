@@ -6,6 +6,9 @@ from blog.forms import PostForm
 from blog.models import PostModel
 
 
+# TODO: soltanoff: use the thumbnails for article, add new field to the PostModel: `icon`
+
+
 class PostDetailView(DetailView):
     template_name = "blog/post.html"
     model = PostModel
