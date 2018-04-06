@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('pyftp', '0002_filemodel_count'),
+        ('storage', '0002_filemodel_count'),
     ]
 
     operations = [

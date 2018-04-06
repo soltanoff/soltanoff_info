@@ -8,22 +8,18 @@ from django.http.response import HttpResponse, Http404
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_protect
 from django.views.generic import CreateView, ListView
+from django.utils.translation import gettext as _
 
-from pyftp.forms import FileForm
-from pyftp.models import FileModel
+from storage.forms import FileForm
+from storage.models import FileModel
 
 
 # TODO: soltanoff: use AJAX https://simpleisbetterthancomplex.com/tutorial/2016/08/29/how-to-work-with-ajax-request-with-django.html
-class FileListView(SuccessMessageMixin, ListView):
-    template_name = "pyftp/index.html"
+class FileListView(ListView):
+    template_name = "storage/index.html"
     model = FileModel
     queryset = FileModel.objects.all()
     context_object_name = "files"
-    success_message = u"File \"<a href=\"{href}\">{title}</a>\" uploaded!"
-
-    def get_success_message(self, cleaned_data):
-        post = FileModel.objects.get(**cleaned_data)
-        return self.success_message.format(href=post.getUrl(), title=cleaned_data['title'])
 
     def get_context_data(self, **kwargs):
         context = super(FileListView, self).get_context_data(**kwargs)
@@ -37,12 +33,18 @@ class FileListView(SuccessMessageMixin, ListView):
         return context
 
 
-class FileCreateView(CreateView):
-    template_name = "pyftp/upload.html"
+class FileCreateView(SuccessMessageMixin, CreateView):
+    template_name = "storage/upload.html"
     model = FileModel
     form = None
     fields = ["file_name", "notes", "file"]
     success_url = "../"
+    success_message = _(u"File \"<a href=\"{href}\">{title}</a>\" uploaded!")
+
+    # TODO: soltanoff: need to fix this
+    def get_success_message(self, cleaned_data):
+        # file = FileModel.objects.get(**cleaned_data)
+        return self.success_message.format(href=self.object.getUrl(), title=cleaned_data['file_name'])
 
     def get_context_data(self, **kwargs):
         context = super(FileCreateView, self).get_context_data(**kwargs)
@@ -59,8 +61,7 @@ class FileCreateView(CreateView):
 
     def form_valid(self, form):
         self.object = form.save()
-        return HttpResponseRedirect(self.get_success_url() + '?add=%s' % self.object.pk)
-
+        return super(FileCreateView, self).form_valid(form)
 
 @csrf_protect
 @login_required
@@ -71,7 +72,7 @@ def remove(request, file_id):
         add_message(
             request,
             messages.WARNING,
-            "File \"<b>{title}</b>\" is removed!".format(title=file.file_name)
+            _("File \"<b>{title}</b>\" is removed!").format(title=file.file_name)
         )
         return redirect("../../")
     else:

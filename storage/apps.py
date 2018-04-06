@@ -2,5 +2,5 @@
 from django.apps import AppConfig
 
 
-class PyftpConfig(AppConfig):
-    name = 'pyftp'
+class StorageConfig(AppConfig):
+    name = 'storage'

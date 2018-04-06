@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 
-from pyftp.models import FileModel
+from storage.models import FileModel
 
 
 class FileAdmin(admin.ModelAdmin):

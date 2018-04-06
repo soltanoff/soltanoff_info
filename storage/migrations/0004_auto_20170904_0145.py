@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('pyftp', '0003_auto_20170903_2325'),
+        ('storage', '0003_auto_20170903_2325'),
     ]
 
     operations = [
