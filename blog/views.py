@@ -7,7 +7,8 @@ from django.http import Http404
 from django.shortcuts import redirect
 from django.utils.translation import gettext as _
 from django.views.decorators.csrf import csrf_protect
-from django.views.generic import DetailView, ListView, CreateView
+from django.views.generic import DetailView, ListView, CreateView, UpdateView
+from django.views.generic.edit import ModelFormMixin
 
 from blog.forms import PostForm
 from blog.models import PostModel
@@ -45,17 +46,21 @@ class PostListView(ListView):
         return context
 
 
-class PostCreateView(SuccessMessageMixin, CreateView):
-    template_name = "blog/upload.html"
+class BasePostView(SuccessMessageMixin, ModelFormMixin):
     model = PostModel
     form = None
     fields = ["title", "entry", "content"]
-    success_url = "../"
-    success_message = _(u"Article \"<a href=\"{href}\">{title}</a>\" created!")
 
     def get_success_message(self, cleaned_data):
-        post = PostModel.objects.get(**cleaned_data)
-        return self.success_message.format(href=post.getUrl(), title=cleaned_data['title'])
+        return self.success_message.format(href=self.object.getUrl(), title=cleaned_data['title'])
+
+    def get_success_url(self):
+        return self.object.getUrl()
+
+
+class PostCreateView(BasePostView, CreateView):
+    template_name = "blog/upload.html"
+    success_message = _(u"Article \"<a href=\"{href}\">{title}</a>\" created!")
 
     def get_context_data(self, **kwargs):
         context = super(PostCreateView, self).get_context_data(**kwargs)
@@ -69,6 +74,11 @@ class PostCreateView(SuccessMessageMixin, CreateView):
     def post(self, request, *args, **kwargs):
         self.form = PostForm(request.POST)
         return super(PostCreateView, self).post(request, *args, **kwargs)
+
+
+class PostUpdateView(BasePostView, UpdateView):
+    template_name = "blog/update.html"
+    success_message = _(u"Article \"<a href=\"{href}\">{title}</a>\" updated!")
 
 
 @csrf_protect
