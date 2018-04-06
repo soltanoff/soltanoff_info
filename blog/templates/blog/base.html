@@ -1,51 +1,63 @@
-{% extends "admin/base.html" %}
+{% extends "base.html" %}
 
-{% block title %}soltanoff blog{% endblock %}
+{% load i18n admin_urls static admin_list %}
 
-{% load static %}
+{% block extrastyle %}
+  {{ block.super }}
+  <link rel="stylesheet" type="text/css" href="{% static "admin/css/changelists.css" %}" />
+  {% if cl.formset %}
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />
+  {% endif %}
+  {% if cl.formset or action_form %}
+    <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+  {% endif %}
+  {{ media.css }}
+  {% if not actions_on_top and not actions_on_bottom %}
+    <style>
+      #changelist table thead th:first-child {width: inherit}
+    </style>
+  {% endif %}
+{% endblock %}
 
 {% block extrahead %}
-<script>window.CKEDITOR_BASEPATH = '{% static "ckeditor/ckeditor/" %}';</script>
-<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
-<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
 {{ block.super }}
+{{ media.js }}
 {% endblock %}
 
-{% block branding %} <h1 id="site-name"><a href="{% url 'blog:index' %}">soltanoff.info blog</a></h1> {% endblock %}
-
-{% block breadcrumbs %} <div class="breadcrumbs">Home</div> {% endblock %}
-
-{% block usertools %}
-<div id="user-tools">
-    {% block welcome-msg %}
-        {% if user.get_short_name or user.get_username %}
-        Welcome,
-        <strong>{% firstof user.get_short_name user.get_username %}</strong>.
-        {% else %}
-        Welcome.
-        {% endif %}
-    {% endblock %}
-    {% block userlinks %}
-        {% if user.is_staff %}<a href="{% url 'admin:index' %}">Manage</a> /{% endif %}
-        <a href="{% url 'pyftp:index' %}">File storage</a>
-        {% if user.get_short_name or user.get_username %}
-        / <a href="{% url 'account:logout' %}">Log out</a>
-        {% else %}
-        / <a href="{% url 'account:login' %}">Log in</a>
-        {% endif %}
-    {% endblock %}
-</div>
+{% block userlinks %}
+    {% if user.is_staff %}<a href="{% url 'admin:index' %}">{% trans "Manage" %}</a> /{% endif %}
+    <a href="{% url 'storage:index' %}">{% trans "File storage" %}</a>
+    {% if user.get_short_name or user.get_username %}
+    / <a href="{% url 'account:logout' %}">{% trans "Log out" %}</a>
+    {% else %}
+    / <a href="{% url 'account:login' %}">{% trans "Log in" %}</a>
+    {% endif %}
 {% endblock %}
 
-{% block messages %}
-{% if messages %}
-    <ul class="messagelist">
-        {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-                {{ message | safe }}
-            </li>
-        {% endfor %}
-    </ul>
-{% endif %}
-{% endblock messages %}
+{% load staticfiles %}
 
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/modify_blog.css' %}">
+    <h1>Article storage</h1>
+    <div id="content-main">
+        {% if user.is_staff %}
+        <ul class="object-tools">
+            <li><a href="{% url 'blog:upload' %}" class="addlink">{% trans "Add article" %}</a></li>
+        </ul>
+        {% endif %}
+        <div class="module" id="changelist">
+            <div id="toolbar">
+                <form id="changelist-search" method="get">
+                    <div><!-- DIV needed for valid HTML -->
+                        <label for="searchbar"><img src="{% static "admin/img/search.svg" %}" alt="Search"/></label>
+                        <input type="text" style="width:auto" name="q" value="{{ search }}" id="searchbar" autofocus/>
+                        <input type="submit" value="{% trans "Search" %}"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        {% block page %}
+        {% endblock %}
+    </div>
+{% endblock %}

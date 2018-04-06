@@ -1,4 +1,4 @@
-{% extends "blog/index_base.html" %}
+{% extends "blog/base.html" %}
 
 {% block breadcrumbs %}<div class="breadcrumbs"><a href="{% url 'blog:index' %}">Home</a> › Add article</div> {% endblock %}
 
@@ -7,7 +7,7 @@
 {% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />{% endblock %}
 
 {% block content %}
-<h1>Add article</h1>
+<h1>{% trans "Add article" %}</h1>
 <div id="content-main">
     <form enctype="multipart/form-data" action="" method="post" novalidate="">{% csrf_token %}
         <fieldset class="module aligned ">
@@ -27,7 +27,7 @@
             {% endif %}
             {% endfor %}
         </fieldset>
-        <div class="submit-row"><input type="submit" value="Save" class="default" name="_save"></div>
+        <div class="submit-row"><input type="submit" value="{% trans "Save" %}" class="default" name="_save"></div>
         <script type="text/javascript"
                 id="django-admin-form-add-constants"
                 src="/static/admin/js/change_form.js"
