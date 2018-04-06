@@ -3,12 +3,11 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages import add_message
 from django.contrib.messages.views import SuccessMessageMixin
-from django.http import HttpResponseRedirect
 from django.http.response import HttpResponse, Http404
 from django.shortcuts import get_object_or_404, redirect
+from django.utils.translation import gettext as _
 from django.views.decorators.csrf import csrf_protect
 from django.views.generic import CreateView, ListView
-from django.utils.translation import gettext as _
 
 from storage.forms import FileForm
 from storage.models import FileModel
@@ -60,6 +59,7 @@ class FileCreateView(SuccessMessageMixin, CreateView):
     def form_valid(self, form):
         self.object = form.save()
         return super(FileCreateView, self).form_valid(form)
+
 
 @csrf_protect
 @login_required
