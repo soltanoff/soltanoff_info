@@ -1,0 +1,184 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-04-06 23:00+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\account\templates\account\login.html:8
+#: .\account\templates\account\login.html:10
+#: .\account\templates\account\login.html:63
+#: .\blog\templates\blog\base.html:33
+msgid "Log in"
+msgstr ""
+
+#: .\account\templates\account\login.html:25
+msgid "Please correct the error below."
+msgstr ""
+
+#: .\account\templates\account\login.html:25
+msgid "Please correct the errors below."
+msgstr ""
+
+#: .\account\templates\account\login.html:40
+#, python-format
+msgid ""
+"You are authenticated as %(username)s, but are not authorized to access this "
+"page. Would you like to login to a different account?"
+msgstr ""
+
+#: .\account\templates\account\login.html:59
+msgid "Forgotten your password or username?"
+msgstr ""
+
+#: .\blog\forms.py:9 .\storage\forms.py:7
+msgid "Title:"
+msgstr "Заголовок:"
+
+#: .\blog\forms.py:10
+msgid "Entry:"
+msgstr "Краткое описание:"
+
+#: .\blog\forms.py:11
+msgid "Content:"
+msgstr "Контент:"
+
+#: .\blog\models.py:10 .\storage\models.py:11
+#: .\storage\templates\storage\index.html:55
+msgid "Title"
+msgstr "Заголовок"
+
+#: .\blog\models.py:11
+msgid "Publication date"
+msgstr "Дата публикации"
+
+#: .\blog\models.py:12
+msgid "Entry"
+msgstr "Краткое описание"
+
+#: .\blog\models.py:13
+msgid "Content"
+msgstr "Контент"
+
+#: .\blog\templates\blog\base.html:28 .\storage\templates\storage\base.html:12
+msgid "Manage"
+msgstr "Адм"
+
+#: .\blog\templates\blog\base.html:29
+#: .\storage\templates\storage\index.html:31
+msgid "File storage"
+msgstr "Хранилище"
+
+#: .\blog\templates\blog\base.html:31 .\storage\templates\storage\base.html:14
+msgid "Log out"
+msgstr ""
+
+#: .\blog\templates\blog\base.html:45 .\blog\templates\blog\upload.html:10
+msgid "Add article"
+msgstr "Добавить статью"
+
+#: .\blog\templates\blog\base.html:54
+#: .\storage\templates\storage\index.html:44
+msgid "Search"
+msgstr ""
+
+#: .\blog\templates\blog\index.html:25
+msgid "More"
+msgstr "Подробнее"
+
+#: .\blog\templates\blog\post.html:5 .\storage\templates\storage\base.html:9
+#: .\storage\templates\storage\upload.html:7 .\templates\base.html:18
+msgid "Home"
+msgstr ""
+
+#: .\blog\templates\blog\post.html:23
+msgid "Back"
+msgstr ""
+
+#: .\blog\templates\blog\upload.html:30
+#: .\storage\templates\storage\upload.html:30
+msgid "Save"
+msgstr ""
+
+#: .\blog\views.py:48
+#, python-brace-format
+msgid "Article \"<a href=\"{href}\">{title}</a>\" created!"
+msgstr "Статья \"<a href=\"{href}\">{title}</a>\" опубликована!"
+
+#: .\storage\forms.py:8
+msgid "File notes:"
+msgstr "Примечания:"
+
+#: .\storage\forms.py:9
+msgid "Source:"
+msgstr "Источник:"
+
+#: .\storage\models.py:12 .\storage\templates\storage\index.html:63
+msgid "File notes"
+msgstr "Примечания"
+
+#: .\storage\models.py:13 .\storage\templates\storage\index.html:59
+msgid "Upload date"
+msgstr "Дата загрузки"
+
+#: .\storage\models.py:14 .\storage\templates\storage\index.html:67
+msgid "Download counter"
+msgstr "Счетчик загрузок"
+
+#: .\storage\models.py:15 .\storage\templates\storage\index.html:71
+msgid "Source"
+msgstr "Источник"
+
+#: .\storage\templates\storage\base.html:13
+msgid "Blog"
+msgstr "Блог"
+
+#: .\storage\templates\storage\index.html:35
+msgid "Add file"
+msgstr "Загрузить файл"
+
+#: .\storage\templates\storage\index.html:94
+msgid "Remove"
+msgstr ""
+
+#: .\storage\templates\storage\index.html:103
+msgid "Count of files"
+msgstr "Количество файлов"
+
+#: .\storage\templates\storage\upload.html:7
+#: .\storage\templates\storage\upload.html:10
+msgid "Upload file"
+msgstr "Загрузить файл"
+
+#: .\storage\templates\storage\upload.html:17
+msgid "Storage"
+msgstr ""
+
+#: .\storage\views.py:42
+#, python-brace-format
+msgid "File \"<a href=\"{href}\">{title}</a>\" uploaded!"
+msgstr "Файл \"<a href=\"{href}\">{title}</a>\" успешно загружен!"
+
+#: .\storage\views.py:75
+#, python-brace-format
+msgid "File \"<b>{title}</b>\" is removed!"
+msgstr "Файл \"<b>{title}</b>\" удален!"
+
+#: .\templates\base.html:24 .\templates\base.html:27
+msgid "Welcome"
+msgstr "Добро пожаловать"
