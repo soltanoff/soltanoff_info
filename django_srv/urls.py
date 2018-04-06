@@ -21,7 +21,7 @@ from django.contrib import admin
 urlpatterns = [
     url(r'', include('blog.urls')),
     url(r'^accounts/', include('account.urlsmanager')),
-    url(r'^storage/', include('storage.urlsmanager')),
+    url(r'^storage/', include('storage.urls')),
     url(r'^manage/', admin.site.urls),
     # TODO: soltanoff: added the login required for this way
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
