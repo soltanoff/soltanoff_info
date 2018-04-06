@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.messages import add_message
 from django.contrib.messages.views import SuccessMessageMixin
+from django.http import Http404
+from django.shortcuts import redirect
 from django.utils.translation import gettext as _
+from django.views.decorators.csrf import csrf_protect
 from django.views.generic import DetailView, ListView, CreateView
 
 from blog.forms import PostForm
@@ -63,3 +69,19 @@ class PostCreateView(SuccessMessageMixin, CreateView):
     def post(self, request, *args, **kwargs):
         self.form = PostForm(request.POST)
         return super(PostCreateView, self).post(request, *args, **kwargs)
+
+
+@csrf_protect
+@login_required
+def remove(request, post_id):
+    if request.user.is_active and request.user.is_staff:
+        post = PostModel.objects.get(id=post_id)
+        post.delete()
+        add_message(
+            request,
+            messages.WARNING,
+            _("Post \"<b>{title}</b>\" is removed!").format(title=post.title)
+        )
+        return redirect("/")
+    else:
+        raise Http404

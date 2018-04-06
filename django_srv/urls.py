@@ -19,7 +19,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'', include('blog.urlsmanager')),
+    url(r'', include('blog.urls')),
     url(r'^accounts/', include('account.urlsmanager')),
     url(r'^storage/', include('storage.urlsmanager')),
     url(r'^manage/', admin.site.urls),

@@ -22,7 +22,8 @@
         <p>{{ post.entry|safe }}</p>
     </div>
 
-    <input type="button" onclick="location.href='{{ post.getUrl }}';" value="{% trans "More" %} ..." class="default">
+    <input type="button" onclick="location.href='{% url 'blog:remove' post.id %}';" value="{% trans "Delete" %}" class="deleteLink">
+    <input type="button" onclick="location.href='{% url 'blog:post' post.id %}';" value="{% trans "More" %} ..." class="default">
 </div>
 {% endfor %}
 {% endblock %}
