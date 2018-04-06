@@ -9,7 +9,9 @@
 {% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />{% endblock %}
 
 {% block content %}
+{% block headone %}
 <h1>{% trans "Add article" %}</h1>
+{% endblock %}
 <div id="content-main">
     <form enctype="multipart/form-data" action="" method="post" novalidate="">{% csrf_token %}
         <fieldset class="module aligned ">
