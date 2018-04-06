@@ -41,9 +41,7 @@ class FileCreateView(SuccessMessageMixin, CreateView):
     success_url = "../"
     success_message = _(u"File \"<a href=\"{href}\">{title}</a>\" uploaded!")
 
-    # TODO: soltanoff: need to fix this
     def get_success_message(self, cleaned_data):
-        # file = FileModel.objects.get(**cleaned_data)
         return self.success_message.format(href=self.object.getUrl(), title=cleaned_data['file_name'])
 
     def get_context_data(self, **kwargs):
