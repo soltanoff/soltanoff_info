@@ -1,4 +1,5 @@
-{% extends "pyftp/base.html" %}
+{% extends "storage/base.html" %}
+
 {% load i18n admin_urls static admin_list %}
 
 {% block extrastyle %}
@@ -26,12 +27,12 @@
 {% load staticfiles %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/modify_pyftp.css' %}">
-<h1>File storage</h1>
+<link rel="stylesheet" href="{% static 'css/modify_storage.css' %}">
+<h1>{% trans "File storage" %}</h1>
 <div id="content-main">
     {% if user.is_staff %}
     <ul class="object-tools">
-        <li><a href="{% url 'pyftp:upload' %}" class="addlink">Add file</a></li>
+        <li><a href="{% url 'storage:upload' %}" class="addlink">{% trans "Add file" %}</a></li>
     </ul>
     {% endif %}
     <div class="module" id="changelist">
@@ -40,7 +41,7 @@
                 <div><!-- DIV needed for valid HTML -->
                     <label for="searchbar"><img src="{% static "admin/img/search.svg" %}" alt="Search"/></label>
                     <input type="text" style="width:auto" name="q" value="{{ search }}" id="searchbar" autofocus/>
-                    <input type="submit" value="Search"/>
+                    <input type="submit" value="{% trans "Search" %}"/>
                 </div>
             </form>
         </div>
@@ -51,23 +52,23 @@
                     <thead>
                     <tr>
                         <th scope="col" class="sortable column-file_name">
-                            <div class="text">Title</div>
+                            <div class="text">{% trans "Title" %}</div>
                             <div class="clear"></div>
                         </th>
                         <th scope="col" class="sortable column-upload_date">
-                            <div class="text">Upload date</div>
+                            <div class="text">{% trans "Upload date" %}</div>
                             <div class="clear"></div>
                         </th>
                         <th scope="col" class="sortable column-notes">
-                            <div class="text">File notes</div>
+                            <div class="text">{% trans "File notes" %}</div>
                             <div class="clear"></div>
                         </th>
                         <th scope="col" class="sortable column-notes">
-                            <div class="text">Download counter</div>
+                            <div class="text">{% trans "Download counter" %}</div>
                             <div class="clear"></div>
                         </th>
                         <th scope="col" class="sortable column-notes">
-                            <div class="text">Source</div>
+                            <div class="text">{% trans "Source" %}</div>
                             <div class="clear"></div>
                         </th>
                         {% if user.is_staff %}
@@ -86,11 +87,11 @@
                         <td class="field-notes" valign="center">{{ f.notes }}</td>
                         <td class="field-count" valign="center">{{ f.count }}</td>
                         <td class="field-file" valign="center">
-                            <a href="{% url 'pyftp:download_file' f.id %}" id="dl_file">{{ f.file }}</a>
+                            <a href="{% url 'storage:download_file' f.id %}" id="dl_file">{{ f.file }}</a>
                         </td>
                         {% if user.is_staff %}
                         <td class="field-file" valign="center" align="right">
-                            <input type="button" onclick="location.href='{% url 'pyftp:remove' f.id %}';" value="Remove" />
+                            <input type="button" onclick="location.href='{% url 'storage:remove' f.id %}';" value="{% trans "Remove" %}" />
                         </td>
                         {% endif %}
                     </tr>
@@ -99,7 +100,7 @@
                 </table>
             </div>
             <p class="paginator">
-                Count of files: {{ files.count }}
+                {% trans "Count of files" %}: {{ files.count }}
             </p>
         </form>
     </div>

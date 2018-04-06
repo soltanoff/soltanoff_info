@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block title %}File Storage, 4730M{% endblock %}
+
+{% block branding %} <h1 id="site-name"><a href="{% url 'storage:index' %}">File Storage, 4730M</a></h1> {% endblock %}
+
+{% block breadcrumbs %} <div class="breadcrumbs">{% trans "Home" %}</div> {% endblock %}
+
+{% block userlinks %}
+    {% if user.is_staff %} <a href="{% url 'admin:index' %}">{% trans "Manage" %}</a> / {% endif %}
+    <a href="{% url 'blog:index' %}">{% trans "Blog" %}</a>
+    / <a href="{% url 'account:logout' %}">{% trans "Log out" %}</a>
+{% endblock %}

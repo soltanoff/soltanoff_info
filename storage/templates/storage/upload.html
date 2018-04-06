@@ -1,18 +1,20 @@
-{% extends "pyftp/base.html" %}
+{% extends "storage/base.html" %}
 
 {% load i18n admin_urls static admin_modify %}
 
 {% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />{% endblock %}
 
+{% block breadcrumbs %} <div class="breadcrumbs"><a href="{% url 'storage:index' %}">{% trans "Home" %}</a> › {% trans "Upload file" %}</div> {% endblock %}
+
 {% block content %}
-<h1>Upload file</h1>
+<h1>{% trans "Upload file" %}</h1>
 <div id="content-main">
     <form enctype="multipart/form-data" action="" method="post" id="filemodel_form" novalidate>{% csrf_token %}
         <fieldset class="module aligned ">
             {% for field in form %}
             {% if forloop.last %}
         </fieldset>
-        <fieldset class="module aligned "><h2>Storage</h2>
+        <fieldset class="module aligned "><h2>{% trans "Storage" %}</h2>
             {% endif %}
             {% if field.errors %}
             <div class="form-row errors">
@@ -25,7 +27,7 @@
                 </div>
                 {% endfor %}
         </fieldset>
-        <div class="submit-row"><input type="submit" value="Save" class="default" name="_save"></div>
+        <div class="submit-row"><input type="submit" value="{% trans "Save" %}" class="default" name="_save"></div>
         <script type="text/javascript"
                 id="django-admin-form-add-constants"
                 src="/static/admin/js/change_form.js"
