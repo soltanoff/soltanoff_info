@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib.messages.views import SuccessMessageMixin
+from django.utils.translation import gettext as _
 from django.views.generic import DetailView, ListView, CreateView
 
 from blog.forms import PostForm
@@ -44,7 +45,7 @@ class PostCreateView(SuccessMessageMixin, CreateView):
     form = None
     fields = ["title", "entry", "content"]
     success_url = "../"
-    success_message = u"Article \"<a href=\"{href}\">{title}</a>\" created!"
+    success_message = _(u"Article \"<a href=\"{href}\">{title}</a>\" created!")
 
     def get_success_message(self, cleaned_data):
         post = PostModel.objects.get(**cleaned_data)
