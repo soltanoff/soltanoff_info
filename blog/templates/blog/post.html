@@ -1,6 +1,6 @@
 {% extends "blog/base.html" %}
 
-{% load i18n %}
+{% load i18n admin_urls static admin_modify %}
 
 {% block breadcrumbs %}<div class="breadcrumbs"><a href="{% url 'blog:index' %}">{% trans "Home" %}</a> › {{ post.title }}</div> {% endblock %}
 
@@ -20,5 +20,5 @@
 <div class="entry">
     <p>{{ post.getAllContent | safe }}</p>
 </div>
-<input type="button" onclick="location.href='{% url 'blog:index' %}';" value="{% trans "Back" %} ..." class="default">
+<input type="button" onclick="location.href='{% url 'blog:index' %}';" value="{% trans 'Back' %} ..." class="default">
 {% endblock %}

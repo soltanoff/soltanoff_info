@@ -6,7 +6,7 @@
 
 {% load i18n admin_urls static admin_modify %}
 
-{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />{% endblock %}
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static 'admin/css/forms.css' %}" />{% endblock %}
 
 {% block content %}
 {% block headone %}
@@ -31,7 +31,7 @@
             {% endif %}
             {% endfor %}
         </fieldset>
-        <div class="submit-row"><input type="submit" value="{% trans "Save" %}" class="default" name="_save"></div>
+        <div class="submit-row"><input type="submit" value="{% trans 'Save' %}" class="default" name="_save"></div>
         <script type="text/javascript"
                 id="django-admin-form-add-constants"
                 src="/static/admin/js/change_form.js"

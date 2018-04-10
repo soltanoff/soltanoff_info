@@ -1,6 +1,6 @@
 {% extends "blog/base.html" %}
 
-{% load i18n %}
+{% load i18n admin_urls static admin_modify %}
 
 {% block page %}
 {% for post in posts %}
@@ -22,10 +22,10 @@
         <p>{{ post.entry|safe }}</p>
     </div>
 
-    <input type="button" onclick="location.href='{% url 'blog:post' post.id %}';" value="{% trans "More" %} ..." class="default">
+    <input type="button" onclick="location.href='{% url 'blog:post' post.id %}';" value="{% trans 'More' %} ..." class="default">
     {% if user.is_staff %}
-    <input type="button" onclick="location.href='{% url 'blog:update' post.id %}';" value="{% trans "Update" %}" class="default">
-    <input type="button" onclick="location.href='{% url 'blog:remove' post.id %}';" value="{% trans "Delete" %}" class="deleteLink">
+    <input type="button" onclick="location.href='{% url 'blog:update' post.id %}';" value="{% trans 'Update' %}" class="default">
+    <input type="button" onclick="location.href='{% url 'blog:remove' post.id %}';" value="{% trans 'Delete' %}" class="deleteLink">
     {% endif %}
 </div>
 {% endfor %}
