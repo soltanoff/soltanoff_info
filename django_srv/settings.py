@@ -30,7 +30,9 @@ ALLOWED_HOSTS = ['*']
 # DISQUS_API_KEY = '***'
 # DISQUS_WEBSITE_SHORTNAME = '***'
 
-# Application definition
+# CKEditor definition
+# https://github.com/django-ckeditor/django-ckeditor
+
 CKEDITOR_UPLOAD_SLUGIFY_FILENAME = False
 
 CKEDITOR_RESTRICT_BY_USER = True
@@ -43,45 +45,12 @@ CKEDITOR_CONFIGS = {
         'toolbar_Basic': [
             ['Source', '-', 'Bold', 'Italic']
         ],
-        'toolbar_YourCustomToolbarConfig': [
-            {'name': 'document', 'items': ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates']},
-            {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
-            {'name': 'editing', 'items': ['Find', 'Replace', '-', 'SelectAll']},
-            {'name': 'forms',
-             'items': ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton',
-                       'HiddenField']},
-            '/',
-            {'name': 'basicstyles',
-             'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
-            {'name': 'paragraph',
-             'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-',
-                       'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl',
-                       'Language']},
-            {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
-            {'name': 'insert',
-             'items': ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']},
-            '/',
-            {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
-            {'name': 'colors', 'items': ['TextColor', 'BGColor']},
-            {'name': 'tools', 'items': ['Maximize', 'ShowBlocks']},
-            {'name': 'about', 'items': ['About']},
-            '/',
-            {'name': 'yourcustomtools', 'items': [
-                'Preview',
-                'Maximize',
-            ]},
-        ],
-        'toolbar': 'YourCustomToolbarConfig',
-        # 'toolbarGroups': [{ 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ] }],
-        # 'height': 291,
-        # 'width': '100%',
-        # 'filebrowserWindowHeight': 725,
-        # 'filebrowserWindowWidth': 940,
-        # 'toolbarCanCollapse': True,
-        # 'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
+        'toolbar': 'full',
         'tabSpaces': 4,
         'extraPlugins': ','.join([
             'uploadimage',
+            'codesnippet',
+            'copyformatting',
             'div',
             'autolink',
             'autoembed',
@@ -109,13 +78,14 @@ CKEDITOR_CONFIGS = {
     }
 }
 
+# Application definition
+
 INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'account.apps.AccountConfig',
     'storage.apps.StorageConfig',
     'ckeditor',
     'ckeditor_uploader',
-    # 'disqus',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -163,7 +133,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'pyftp_db',
-        'USER': 'root',
+        'USER': 'dbuser',
         'PASSWORD': 'dbpassword',
         'HOST': 'localhost',  # Or an IP Address that your DB is hosted on
         'PORT': '3306',
