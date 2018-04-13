@@ -85,9 +85,12 @@ td, th {
 
 .entry{
   line-height:20px;
-  font-size:14px;
+  font-size:15px;
   color: #222222;
   text-align: justify;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .entry p{
