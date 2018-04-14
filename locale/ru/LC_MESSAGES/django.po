@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-06 23:00+0300\n"
+"POT-Creation-Date: 2018-04-14 12:35+0300\n"
 "PO-Revision-Date: 2018-04-13 18:50+0300\n"
 "Last-Translator: Ilya Soltanov <piccadillable@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgstr ""
 #: .\account\templates\account\login.html:8
 #: .\account\templates\account\login.html:10
 #: .\account\templates\account\login.html:63
-#: .\blog\templates\blog\base.html:33
+#: .\blog\templates\blog\base.html:40
 msgid "Log in"
 msgstr ""
 
@@ -46,15 +46,15 @@ msgstr ""
 msgid "Forgotten your password or username?"
 msgstr ""
 
-#: .\blog\forms.py:9 .\storage\forms.py:7
+#: .\blog\forms.py:8 .\storage\forms.py:7
 msgid "Title:"
 msgstr "Заголовок:"
 
-#: .\blog\forms.py:10
+#: .\blog\forms.py:9
 msgid "Entry:"
 msgstr "Краткое описание:"
 
-#: .\blog\forms.py:11
+#: .\blog\forms.py:10
 msgid "Content:"
 msgstr "Контент:"
 
@@ -75,24 +75,24 @@ msgstr "Краткое описание"
 msgid "Content"
 msgstr "Контент"
 
-#: .\blog\templates\blog\base.html:28 .\storage\templates\storage\base.html:12
+#: .\blog\templates\blog\base.html:35 .\storage\templates\storage\base.html:12
 msgid "Manage"
 msgstr "Адм"
 
-#: .\blog\templates\blog\base.html:29
-#: .\storage\templates\storage\index.html:31
+#: .\blog\templates\blog\base.html:36
 msgid "File storage"
-msgstr ""
+msgstr "Хранилище"
 
-#: .\blog\templates\blog\base.html:31 .\storage\templates\storage\base.html:14
+#: .\blog\templates\blog\base.html:38 .\storage\templates\storage\base.html:14
 msgid "Log out"
 msgstr ""
 
-#: .\blog\templates\blog\base.html:45 .\blog\templates\blog\upload.html:10
+#: .\blog\templates\blog\base.html:51 .\blog\templates\blog\upload.html:5
+#: .\blog\templates\blog\upload.html:13
 msgid "Add article"
 msgstr "Добавить статью"
 
-#: .\blog\templates\blog\base.html:54
+#: .\blog\templates\blog\base.html:60
 #: .\storage\templates\storage\index.html:44
 msgid "Search"
 msgstr ""
@@ -101,7 +101,16 @@ msgstr ""
 msgid "More"
 msgstr "Подробнее"
 
-#: .\blog\templates\blog\post.html:5 .\storage\templates\storage\base.html:9
+#: .\blog\templates\blog\index.html:27
+msgid "Edit"
+msgstr "Изменить"
+
+#: .\blog\templates\blog\index.html:28
+msgid "Delete"
+msgstr ""
+
+#: .\blog\templates\blog\post.html:5 .\blog\templates\blog\update.html:5
+#: .\blog\templates\blog\upload.html:5 .\storage\templates\storage\base.html:9
 #: .\storage\templates\storage\upload.html:7 .\templates\base.html:18
 msgid "Home"
 msgstr ""
@@ -110,15 +119,33 @@ msgstr ""
 msgid "Back"
 msgstr "Назад"
 
-#: .\blog\templates\blog\upload.html:30
+#: .\blog\templates\blog\update.html:5 .\blog\templates\blog\update.html:12
+#, fuzzy
+#| msgid "Add article"
+msgid "Edit article"
+msgstr "Добавить статью"
+
+#: .\blog\templates\blog\upload.html:34
 #: .\storage\templates\storage\upload.html:30
 msgid "Save"
 msgstr ""
 
-#: .\blog\views.py:48
+#: .\blog\views.py:63
 #, python-brace-format
 msgid "Article \"<a href=\"{href}\">{title}</a>\" created!"
 msgstr "Статья \"<a href=\"{href}\">{title}</a>\" опубликована!"
+
+#: .\blog\views.py:81
+#, fuzzy, python-brace-format
+#| msgid "Article \"<a href=\"{href}\">{title}</a>\" created!"
+msgid "Article \"<a href=\"{href}\">{title}</a>\" updated!"
+msgstr "Статья \"<a href=\"{href}\">{title}</a>\" опубликована!"
+
+#: .\blog\views.py:93
+#, fuzzy, python-brace-format
+#| msgid "File \"<b>{title}</b>\" is removed!"
+msgid "Post \"<b>{title}</b>\" is removed!"
+msgstr "Файл \"<b>{title}</b>\" удален!"
 
 #: .\storage\forms.py:8
 msgid "File notes:"
@@ -169,12 +196,12 @@ msgstr "Загрузить файл"
 msgid "Storage"
 msgstr ""
 
-#: .\storage\views.py:42
+#: .\storage\views.py:41
 #, python-brace-format
 msgid "File \"<a href=\"{href}\">{title}</a>\" uploaded!"
 msgstr "Файл \"<a href=\"{href}\">{title}</a>\" успешно загружен!"
 
-#: .\storage\views.py:75
+#: .\storage\views.py:73
 #, python-brace-format
 msgid "File \"<b>{title}</b>\" is removed!"
 msgstr "Файл \"<b>{title}</b>\" удален!"
@@ -182,3 +209,8 @@ msgstr "Файл \"<b>{title}</b>\" удален!"
 #: .\templates\base.html:24 .\templates\base.html:27
 msgid "Welcome"
 msgstr "Добро пожаловать"
+
+#, fuzzy
+#~| msgid "Upload date"
+#~ msgid "Update"
+#~ msgstr "Дата загрузки"
