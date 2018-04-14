@@ -8,6 +8,9 @@ from storage.apps import StorageConfig
 
 
 class FileModel(models.Model):
+    class Meta:
+        ordering = ['upload_date', 'count']
+
     file_name = models.CharField(_('Title'), max_length=20)
     notes = models.CharField(_('File notes'), max_length=20, null=True)
     upload_date = models.DateTimeField(_('Upload date'), null=True, default=datetime.now, blank=True)

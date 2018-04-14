@@ -7,6 +7,9 @@ from django.utils.translation import gettext_lazy as _
 
 
 class PostModel(models.Model):
+    class Meta:
+        ordering = ['-datetime']
+
     title = models.CharField(_('Title'), max_length=255)
     datetime = models.DateTimeField(_('Publication date'), default=datetime.now)
     entry = RichTextUploadingField(_('Entry'), max_length=2000, config_name='simple_toolbar')
