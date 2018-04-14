@@ -44,6 +44,24 @@ td, th {
     background: #417690;
 }
 
+input.deleteLink {
+    display: block;
+    background: #ba2121;
+    border-radius: 4px;
+    padding: 10px 15px;
+    height: 15px;
+    line-height: 15px;
+    color: #fff;
+}
+
+input[type=button].default:focus, input[type=button].default:hover, input[type=button].default:active {
+    background: #205067;
+}
+
+input[type=button].deleteLink:focus, input[type=button].deleteLink:hover, input[type=button].deleteLink:active {
+    background: #a41515;
+}
+
 #changelist #toolbar {
     padding: 8px 10px;
     margin-bottom: 15px;
