@@ -24,7 +24,7 @@
 
     <input type="button" onclick="location.href='{% url 'blog:post' post.id %}';" value="{% trans 'More' %} ..." class="default">
     {% if user.is_staff %}
-    <input type="button" onclick="location.href='{% url 'blog:update' post.id %}';" value="{% trans 'Update' %}" class="default">
+    <input type="button" onclick="location.href='{% url 'blog:update' post.id %}';" value="{% trans 'Edit' %}" class="default">
     <input type="button" onclick="location.href='{% url 'blog:remove' post.id %}';" value="{% trans 'Delete' %}" class="deleteLink">
     {% endif %}
 </div>
