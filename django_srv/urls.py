@@ -23,8 +23,7 @@ urlpatterns = [
     url(r'^accounts/', include('account.urls')),
     url(r'^storage/', include('storage.urls')),
     url(r'^manage/', admin.site.urls),
-    # TODO: soltanoff: added the login required for this way
-    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    url(r'^ckeditor/', (include('ckeditor_uploader.urls'))),
     url(r'^i18n/', include('django.conf.urls.i18n')),
 ]
 
