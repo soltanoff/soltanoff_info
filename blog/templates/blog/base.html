@@ -23,6 +23,7 @@
       #changelist table thead th:first-child {width: inherit}
     </style>
     {% endif %}
+    <link rel="stylesheet" href="{% static 'css/modify_blog.css' %}">
 {% endblock %}
 
 {% block extrahead %}
@@ -43,7 +44,6 @@
 {% load staticfiles %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/modify_blog.css' %}">
     <h1>Article storage</h1>
     <div id="content-main">
         {% if user.is_staff %}

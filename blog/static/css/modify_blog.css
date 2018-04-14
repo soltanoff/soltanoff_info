@@ -8,6 +8,12 @@ td, th {
     font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
 }
 
+#content {
+    max-width: 862px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #changelist-search label {
     line-height: unset;
     align-self: center;
@@ -48,79 +54,76 @@ td, th {
 }
 
 .post{
-  width:100%;
-  margin:0 0 10px 0;
+    width:100%;
+    margin:0 0 10px 0;
 }
 
 .post-top{
-  width:100%;
+    width:100%;
 }
 
 .post-title{
-  width:100%;
-  overflow:hidden;
-  padding-bottom: 4px;
-  margin-bottom: 8px;
+    width:100%;
+    overflow:hidden;
+    padding-bottom: 4px;
+    margin-bottom: 8px;
 }
 
 .post-title .left h2{
-  font-size:20px;
-  color:#000;
-  font-weight:normal;
-  padding: 0px;
-  margin-bottom: 0px;
-  margin-top: 0px;
+    font-size:20px;
+    color:#000;
+    font-weight:normal;
+    padding: 0px;
+    margin-bottom: 0px;
+    margin-top: 0px;
 }
 
 .post-title .left p {
-  font-size: 12px;
-  margin-top: 4px;
-  color: #444;
-  clear: both;
+    font-size: 12px;
+    margin-top: 4px;
+    color: #444;
+    clear: both;
 }
 
 .post-title .left {
-  color:#000;
+    color:#000;
 }
 
 .entry{
   line-height:20px;
-  font-size:15px;
-  color: #222222;
-  text-align: justify;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+    font-size:15px;
+    color: #222222;
+    text-align: justify;
 }
 
 .entry p{
-  padding-bottom:10px;
+    padding-bottom:10px;
 }
 
 .entry p a{
-  text-decoration:underline;
+    text-decoration:underline;
 }
 
 .entry p a:hover {
-  text-decoration:none;
+    text-decoration:none;
 }
 
 .postmetadata{
-  overflow:hidden;
-  text-align:center;
-  // border-bottom: 1px dotted #ccc;
-  padding: 0px 0px 10px 0px;
+    overflow:hidden;
+    text-align:center;
+    // border-bottom: 1px dotted #ccc;
+    padding: 0px 0px 10px 0px;
 }
 
 .postmetadata a{
-  color: #447e9b;
-  font-size:12px;
+    color: #447e9b;
+    font-size:12px;
 
-  font-weight:bold;
+    font-weight:bold;
 }
 
 .entry strong{
-  color:#222222;
+    color:#222222;
 }
 
 .text-block {
