@@ -11,5 +11,5 @@ urlpatterns = [
     path(r'post/<int:pk>/', PostDetailView.as_view(), name='post'),
     path(r'post/upload/', login_required(PostCreateView.as_view()), name='upload'),
     path(r'post/remove/<int:post_id>/', login_required(views.remove), name='remove'),
-    path(r'post/update/<int:pk>/', login_required(PostUpdateView.as_view()), name='update'),
+    path(r'post/edit/<int:pk>/', login_required(PostUpdateView.as_view()), name='update'),
 ]

@@ -77,7 +77,7 @@ class PostCreateView(BasePostView, CreateView):
 
 
 class PostUpdateView(BasePostView, UpdateView):
-    template_name = "blog/update.html"
+    template_name = "blog/edit.html"
     success_message = _(u"Article \"<a href=\"{href}\">{title}</a>\" updated!")
 
 
