@@ -120,10 +120,8 @@ msgid "Back"
 msgstr "Назад"
 
 #: .\blog\templates\blog\update.html:5 .\blog\templates\blog\update.html:12
-#, fuzzy
-#| msgid "Add article"
 msgid "Edit article"
-msgstr "Добавить статью"
+msgstr "Изменить статью"
 
 #: .\blog\templates\blog\upload.html:34
 #: .\storage\templates\storage\upload.html:30
@@ -136,16 +134,12 @@ msgid "Article \"<a href=\"{href}\">{title}</a>\" created!"
 msgstr "Статья \"<a href=\"{href}\">{title}</a>\" опубликована!"
 
 #: .\blog\views.py:81
-#, fuzzy, python-brace-format
-#| msgid "Article \"<a href=\"{href}\">{title}</a>\" created!"
 msgid "Article \"<a href=\"{href}\">{title}</a>\" updated!"
-msgstr "Статья \"<a href=\"{href}\">{title}</a>\" опубликована!"
+msgstr "Статья \"<a href=\"{href}\">{title}</a>\" изменена!"
 
 #: .\blog\views.py:93
-#, fuzzy, python-brace-format
-#| msgid "File \"<b>{title}</b>\" is removed!"
 msgid "Post \"<b>{title}</b>\" is removed!"
-msgstr "Файл \"<b>{title}</b>\" удален!"
+msgstr "Статья \"<b>{title}</b>\" удалена!"
 
 #: .\storage\forms.py:8
 msgid "File notes:"
