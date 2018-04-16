@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django import forms
-from django.utils.translation import gettext_lazy as _
+
+from blog.models import PostModel
 
 
-class PostForm(forms.Form):
-    title = forms.CharField(label=_("Title:"), required=True)
-    entry = forms.CharField(label=_("Entry:"), required=True, widget=CKEditorUploadingWidget(config_name='simple_toolbar'))
-    content = forms.CharField(label=_("Content:"), required=True, widget=CKEditorUploadingWidget())
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = PostModel
+        fields = ['title', 'entry', 'content']
