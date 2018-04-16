@@ -11,6 +11,7 @@
     <!--end: code highlighting-->
 
     <link rel="stylesheet" type="text/css" href="{% static 'admin/css/changelists.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/widgets.css' %}" />
     {% if cl.formset %}
     <link rel="stylesheet" type="text/css" href="{% static 'admin/css/forms.css' %}" />
     {% endif %}
@@ -24,6 +25,8 @@
     </style>
     {% endif %}
     <link rel="stylesheet" href="{% static 'css/modify_blog.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/categories.css' %}">
 {% endblock %}
 
 {% block extrahead %}
@@ -46,6 +49,18 @@
 {% block content %}
     <h1>Article storage</h1>
     <div id="content-main">
+        <div id="content-related">
+            <div class="module" id="recent-actions-module">
+                <h2>{% trans 'Categories' %}</h2>
+                <ul class="categoryList">
+                    <li class="changelink">
+                        <a href="/">test</a>
+                        <br>
+                        <span class="mini quiet">test</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
         {% if user.is_staff %}
         <ul class="object-tools">
             <li><a href="{% url 'blog:upload' %}" class="addlink">{% trans "Add article" %}</a></li>
