@@ -48,7 +48,7 @@ class PostListView(ListView):
 
 class BasePostView(SuccessMessageMixin, ModelFormMixin):
     model = PostModel
-    form = None
+    form = PostForm
     fields = ["title", "entry", "content"]
 
     def get_success_message(self, cleaned_data):
@@ -61,19 +61,6 @@ class BasePostView(SuccessMessageMixin, ModelFormMixin):
 class PostCreateView(BasePostView, CreateView):
     template_name = "blog/upload.html"
     success_message = _(u"Article \"<a href=\"{href}\">{title}</a>\" created!")
-
-    def get_context_data(self, **kwargs):
-        context = super(PostCreateView, self).get_context_data(**kwargs)
-        context["form"] = self.form
-        return context
-
-    def get(self, request, *args, **kwargs):
-        self.form = PostForm()
-        return super(PostCreateView, self).get(request, *args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-        self.form = PostForm(request.POST)
-        return super(PostCreateView, self).post(request, *args, **kwargs)
 
 
 class PostUpdateView(BasePostView, UpdateView):
