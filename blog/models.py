@@ -6,7 +6,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
-class CategoryModel(models.Model):
+class TagModel(models.Model):
     class Meta:
         ordering = ['title']
 
@@ -27,11 +27,7 @@ class PostModel(models.Model):
 
     title = models.CharField(_('Title'), max_length=255)
     datetime = models.DateTimeField(_('Publication date'), default=datetime.now)
-    # category = models.ForeignKey(
-    #     CategoryModel,
-    #     on_delete=models.CASCADE,
-    #     # primary_key=True,
-    # )
+    tags = models.ManyToManyField(TagModel, blank=True)
     entry = RichTextUploadingField(_('Entry'), max_length=2000, config_name='simple_toolbar')
     content = RichTextUploadingField(_('Content'), max_length=100000)
 
@@ -42,7 +38,7 @@ class PostModel(models.Model):
         return self.title
 
     def getUrl(self):
-        return '/post/%s' % self.id
+        return '/post/%s' % self.pk
 
     def getAllContent(self):
         return ''.join(map(lambda x: '%s' % str(x), (self.entry, self.content)))

@@ -7,4 +7,4 @@ from blog.models import PostModel
 class PostForm(forms.ModelForm):
     class Meta:
         model = PostModel
-        fields = ['title', 'entry', 'content']
+        fields = ['title', 'tags', 'entry', 'content']

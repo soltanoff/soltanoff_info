@@ -49,7 +49,7 @@ class PostListView(ListView):
 class BasePostView(SuccessMessageMixin, ModelFormMixin):
     model = PostModel
     form = PostForm
-    fields = ["title", "entry", "content"]
+    fields = ["title", "tags", "entry", "content"]
 
     def get_success_message(self, cleaned_data):
         return self.success_message.format(href=self.object.getUrl(), title=cleaned_data['title'])
