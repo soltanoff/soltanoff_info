@@ -25,5 +25,14 @@
 <div class="entry">
     <p>{{ post.getAllContent | safe }}</p>
 </div>
+<br>
+<br>
+<ul class="object-tools" style="float: left;">
+    <li style="margin-left: 0px;">{% trans "Tags" %}:</li>
+    {% for tag in post.tags.all reversed %}
+    <li><a href="{% url 'blog:index' %}?tag={{ tag.pk }}">{{ tag.title }}</a></li>
+    {% endfor %}
+</ul>
+
 <input type="button" onclick="location.href='{% url 'blog:index' %}';" value="{% trans 'Back' %} ..." class="default">
 {% endblock %}
