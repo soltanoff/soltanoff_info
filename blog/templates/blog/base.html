@@ -63,7 +63,8 @@
         </div>
         {% if user.is_staff %}
         <ul class="object-tools">
-            <li><a href="{% url 'blog:upload' %}" class="addlink">{% trans "Add article" %}</a></li>
+            {% block object-tools %}
+            {% endblock %}
         </ul>
         {% endif %}
         <div class="module" id="changelist">
