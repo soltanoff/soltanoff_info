@@ -4,6 +4,11 @@
 
 {% block breadcrumbs %}<div class="breadcrumbs"><a href="{% url 'blog:index' %}">{% trans "Home" %}</a> › {{ post.title }}</div> {% endblock %}
 
+{% block object-tools %}
+<li><a href="{% url 'blog:upload' %}" class="addlink">{% trans "Add article" %}</a></li>
+<li><a href="{% url 'blog:edit' post.pk %}" class="viewsitelink">{% trans "Edit article" %}</a></li>
+{% endblock %}
+
 {% block page %}
 <div class="post-top">
     <div class="post-title">
