@@ -2,22 +2,31 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages import add_message
-from django.contrib.messages.views import SuccessMessageMixin
 from django.http import Http404
 from django.shortcuts import redirect
 from django.utils.translation import gettext as _
 from django.views.decorators.csrf import csrf_protect
 from django.views.generic import DetailView, ListView, CreateView, UpdateView
-from django.views.generic.edit import ModelFormMixin
 
-from blog.forms import PostForm
+from blog.generic.mixins import TagMixin
+from blog.generic.views import BasePostView
 from blog.models import PostModel
 
 
 # TODO: soltanoff: use the thumbnails for article, add new field to the PostModel: `icon`
 
 
-class PostDetailView(DetailView):
+class PostCreateView(BasePostView, CreateView):
+    template_name = "blog/upload.html"
+    success_message = _(u"Article \"<a href=\"{href}\">{title}</a>\" created!")
+
+
+class PostUpdateView(BasePostView, UpdateView):
+    template_name = "blog/edit.html"
+    success_message = _(u"Article \"<a href=\"{href}\">{title}</a>\" updated!")
+
+
+class PostDetailView(TagMixin, DetailView):
     template_name = "blog/post.html"
     model = PostModel
     context_object_name = "post"
@@ -25,7 +34,7 @@ class PostDetailView(DetailView):
 
 
 # TODO: soltanoff: use paginator
-class PostListView(ListView):
+class PostListView(TagMixin, ListView):
     template_name = "blog/index.html"
     model = PostModel
     queryset = PostModel.objects.all()
@@ -45,28 +54,6 @@ class PostListView(ListView):
             self.queryset = PostModel.objects.all()
         context[self.context_object_name] = self.queryset
         return context
-
-
-class BasePostView(SuccessMessageMixin, ModelFormMixin):
-    model = PostModel
-    form = PostForm
-    fields = ["title", "tags", "entry", "content"]
-
-    def get_success_message(self, cleaned_data):
-        return self.success_message.format(href=self.object.getUrl(), title=cleaned_data['title'])
-
-    def get_success_url(self):
-        return self.object.getUrl()
-
-
-class PostCreateView(BasePostView, CreateView):
-    template_name = "blog/upload.html"
-    success_message = _(u"Article \"<a href=\"{href}\">{title}</a>\" created!")
-
-
-class PostUpdateView(BasePostView, UpdateView):
-    template_name = "blog/edit.html"
-    success_message = _(u"Article \"<a href=\"{href}\">{title}</a>\" updated!")
 
 
 @csrf_protect
