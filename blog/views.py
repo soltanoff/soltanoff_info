@@ -40,20 +40,22 @@ class PostListView(TagMixin, ListView):
     queryset = PostModel.objects.all()
     context_object_name = "posts"
     allow_empty = True
-    paginate_orphans = 10
+    paginate_by = 2
+    paginate_orphans = 2
     page_kwarg = "p"
 
-    def get_context_data(self, **kwargs):
-        context = super(PostListView, self).get_context_data(**kwargs)
-        context['search'] = self.request.GET.get('q', '')
-
-        if context['search']:
-            # TODO: сделать поиск по нескольким полям в стиле SQL-конструкции `LIKE`
-            self.queryset = PostModel.objects.filter(title__icontains=context['search'])
-        else:
-            self.queryset = PostModel.objects.all()
-        context[self.context_object_name] = self.queryset
-        return context
+    # TODO: soltanoff: move this logic to the `get()` method
+    # def get_context_data(self, **kwargs):
+    #     context = super(PostListView, self).get_context_data(**kwargs)
+    #     context['search'] = self.request.GET.get('q', '')
+    #
+    #     if context['search']:
+    #         # TODO: сделать поиск по нескольким полям в стиле SQL-конструкции `LIKE`
+    #         self.queryset = PostModel.objects.filter(title__icontains=context['search'])
+    #     # else:
+    #     #     self.queryset = PostModel.objects.all()
+    #     context[self.context_object_name] = self.queryset
+    #     return context
 
 
 @csrf_protect
