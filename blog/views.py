@@ -24,6 +24,7 @@ class PostDetailView(DetailView):
     slug_field = "title"
 
 
+# TODO: soltanoff: use paginator
 class PostListView(ListView):
     template_name = "blog/index.html"
     model = PostModel
