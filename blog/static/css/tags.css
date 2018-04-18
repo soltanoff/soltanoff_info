@@ -20,11 +20,11 @@
     padding-right: .6em;
 }
 
-.module ul.categoryList {
+.module ul.tagList {
     margin-left: 0;
 }
 
-ul.categoryList li {
+ul.tagList li {
     list-style-type: none;
     overflow: hidden;
     text-overflow: ellipsis;

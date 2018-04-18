@@ -26,7 +26,7 @@
     {% endif %}
     <link rel="stylesheet" href="{% static 'css/modify_blog.css' %}">
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
-    <link rel="stylesheet" href="{% static 'css/categories.css' %}">
+<link rel="stylesheet" href="{% static 'css/tags.css' %}">
 {% endblock %}
 
 {% block extrahead %}
@@ -51,13 +51,15 @@
     <div id="content-main">
         <div id="content-related">
             <div class="module" id="recent-actions-module">
-                <h2>{% trans 'Categories' %}</h2>
-                <ul class="categoryList">
+                <h2>{% trans 'Tags' %}</h2>
+                <ul class="tagList">
+                    {% for tag in tags %}
                     <li class="changelink">
-                        <a href="/">test</a>
+                        <a href="?tag={{ tag.pk }}">{{ tag.title }}</a>
                         <br>
-                        <span class="mini quiet">test</span>
+                        <span class="mini quiet">{{ tag.description }}</span>
                     </li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
