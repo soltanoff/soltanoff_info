@@ -37,25 +37,18 @@ class PostDetailView(TagMixin, DetailView):
 class PostListView(TagMixin, ListView):
     template_name = "blog/index.html"
     model = PostModel
-    queryset = PostModel.objects.all()
     context_object_name = "posts"
     allow_empty = True
     paginate_by = 2
     paginate_orphans = 2
     page_kwarg = "p"
 
-    # TODO: soltanoff: move this logic to the `get()` method
-    # def get_context_data(self, **kwargs):
-    #     context = super(PostListView, self).get_context_data(**kwargs)
-    #     context['search'] = self.request.GET.get('q', '')
-    #
-    #     if context['search']:
-    #         # TODO: сделать поиск по нескольким полям в стиле SQL-конструкции `LIKE`
-    #         self.queryset = PostModel.objects.filter(title__icontains=context['search'])
-    #     # else:
-    #     #     self.queryset = PostModel.objects.all()
-    #     context[self.context_object_name] = self.queryset
-    #     return context
+    def get(self, request, *args, **kwargs):
+        search_line = request.GET.get('q', '')
+        if search_line:
+            # TODO: сделать поиск по нескольким полям в стиле SQL-конструкции `LIKE`
+            self.queryset = PostModel.objects.filter(title__icontains=search_line)
+        return super(PostListView, self).get(redirect, *args, **kwargs)
 
 
 @csrf_protect
