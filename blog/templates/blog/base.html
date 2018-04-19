@@ -25,8 +25,15 @@
     </style>
     {% endif %}
     <link rel="stylesheet" href="{% static 'css/modify_blog.css' %}">
-    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
 <link rel="stylesheet" href="{% static 'css/tags.css' %}">
+{% endblock %}
+
+{% block responsive %}
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<link rel="stylesheet" type="text/css" href="{% static 'admin/css/responsive.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+{% if LANGUAGE_BIDI %}
+<link rel="stylesheet" type="text/css" href="{% static 'admin/css/responsive_rtl.css' %}"/>{% endif %}
 {% endblock %}
 
 {% block extrahead %}
@@ -49,6 +56,13 @@
 {% block content %}
     <h1>Article storage</h1>
     <div id="content-main">
+        {% if user.is_staff %}
+        <ul class="object-tools">
+            {% block object-tools %}
+            {% endblock %}
+        </ul>
+        {% endif %}
+        {% if tags %}
         <div id="content-related">
             <div class="module" id="recent-actions-module">
                 <h2>{% trans 'Tags' %}</h2>
@@ -63,11 +77,6 @@
                 </ul>
             </div>
         </div>
-        {% if user.is_staff %}
-        <ul class="object-tools">
-            {% block object-tools %}
-            {% endblock %}
-        </ul>
         {% endif %}
         <div class="module" id="changelist">
             <div id="toolbar">
@@ -78,6 +87,14 @@
                         <input type="submit" value="{% trans 'Search' %}"/>
                     </div>
                 </form>
+                {% if current_tags %}
+                <div id="tags">
+                    <ul class="object-tools">
+                        <li style="margin-left: 0px;">{% trans "Selected tag" %}:</li>
+                        <li><a href="/">{{ current_tags }}</a></li>
+                    </ul>
+                </div>
+                {% endif %}
             </div>
         </div>
 

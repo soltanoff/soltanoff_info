@@ -10,6 +10,10 @@ input[type="submit"], button {
     position: fixed;
 }
 
+#tags .object-tools {
+    margin-top: -24px;
+}
+
 @media (max-width: 1024px) {
     /* Basic */
 
@@ -499,6 +503,7 @@ input[type="submit"], button {
     #changelist #toolbar {
         order: 1;
         padding: 10px;
+        margin-top: 45px;
     }
 
     #changelist .xfull {
@@ -542,6 +547,11 @@ input[type="submit"], button {
         margin: 0 0 15px;
         padding: 0;
         overflow: hidden;
+    }
+
+    #tags .object-tools {
+        margin: 0 0 0px;
+        margin-top: 4px;
     }
 
     .object-tools li {
@@ -993,4 +1003,6 @@ input[type="submit"], button {
         font-size: 13px;
         word-break: break-word;
     }
+
+
 }
