@@ -33,7 +33,7 @@ class PostDetailView(TagMixin, DetailView):
     slug_field = "title"
 
 
-# TODO: soltanoff: use paginator
+# TODO: soltanoff: need to save previous GET params
 class PostListView(TagMixin, ListView):
     template_name = "blog/index.html"
     model = PostModel
@@ -43,11 +43,23 @@ class PostListView(TagMixin, ListView):
     paginate_orphans = 2
     page_kwarg = "p"
 
+    def __queryset_filter(self, **kwargs):
+        if not self.queryset:
+            return PostModel.objects.filter(**kwargs)
+        else:
+            return self.queryset.filter(**kwargs)
+
     def get(self, request, *args, **kwargs):
-        search_line = request.GET.get('q', '')
+        search_line = request.GET.get('q', None)
+        tag = request.GET.get('tag', None)
+
+        cond = {}
         if search_line:
             # TODO: сделать поиск по нескольким полям в стиле SQL-конструкции `LIKE`
-            self.queryset = PostModel.objects.filter(title__icontains=search_line)
+            cond['title__icontains'] = search_line
+        if tag:
+            cond['tags'] = tag
+        self.queryset = self.__queryset_filter(**cond)
         return super(PostListView, self).get(redirect, *args, **kwargs)
 
 
