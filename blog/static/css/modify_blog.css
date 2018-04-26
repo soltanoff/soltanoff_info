@@ -42,6 +42,7 @@ td, th {
     border: none;
     font-weight: 400;
     background: #417690;
+    text-transform: uppercase;
 }
 
 input.deleteLink {
@@ -162,6 +163,7 @@ body.popup .text-block {
     height: 35px;
     line-height: 15px;
     margin: 0 0 0 5px;
+    text-transform: uppercase;
 }
 
 .text-block input.default {
