@@ -27,7 +27,7 @@ class PostModel(models.Model):
 
     title = models.CharField(_('Title'), max_length=255)
     datetime = models.DateTimeField(_('Publication date'), default=datetime.now)
-    tags = models.ManyToManyField(TagModel, blank=True)
+    tags = models.ManyToManyField(TagModel, verbose_name=_('Tags'), blank=True)
     entry = RichTextUploadingField(_('Entry'), max_length=2000, config_name='simple_toolbar')
     content = RichTextUploadingField(_('Content'), max_length=100000)
 
