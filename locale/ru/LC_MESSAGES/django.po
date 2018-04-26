@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-14 12:35+0300\n"
+"POT-Creation-Date: 2018-04-26 23:07+0300\n"
 "PO-Revision-Date: 2018-04-13 18:50+0300\n"
 "Last-Translator: Ilya Soltanov <piccadillable@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgstr ""
 #: .\account\templates\account\login.html:8
 #: .\account\templates\account\login.html:10
 #: .\account\templates\account\login.html:63
-#: .\blog\templates\blog\base.html:40
+#: .\blog\templates\blog\base.html:50
 msgid "Log in"
 msgstr ""
 
@@ -46,100 +46,108 @@ msgstr ""
 msgid "Forgotten your password or username?"
 msgstr ""
 
-#: .\blog\forms.py:8 .\storage\forms.py:7
-msgid "Title:"
-msgstr "Заголовок:"
-
-#: .\blog\forms.py:9
-msgid "Entry:"
-msgstr "Краткое описание:"
-
-#: .\blog\forms.py:10
-msgid "Content:"
-msgstr "Контент:"
-
-#: .\blog\models.py:10 .\storage\models.py:11
+#: .\blog\models.py:13 .\blog\models.py:28 .\storage\models.py:14
 #: .\storage\templates\storage\index.html:55
 msgid "Title"
 msgstr "Заголовок"
 
-#: .\blog\models.py:11
+#: .\blog\models.py:14 .\blog\models.py:29
 msgid "Publication date"
 msgstr "Дата публикации"
 
-#: .\blog\models.py:12
+#: .\blog\models.py:15
+msgid "Description"
+msgstr ""
+
+#: .\blog\models.py:30 .\blog\templates\blog\base.html:68
+#: .\blog\templates\blog\post.html:31
+msgid "Tags"
+msgstr "Метки"
+
+#: .\blog\models.py:31
 msgid "Entry"
 msgstr "Краткое описание"
 
-#: .\blog\models.py:13
+#: .\blog\models.py:32 .\blog\templates\blog\upload.html:28
 msgid "Content"
 msgstr "Контент"
 
-#: .\blog\templates\blog\base.html:35 .\storage\templates\storage\base.html:12
+#: .\blog\templates\blog\base.html:45 .\storage\templates\storage\base.html:12
 msgid "Manage"
 msgstr "Адм"
 
-#: .\blog\templates\blog\base.html:36
+#: .\blog\templates\blog\base.html:46
 msgid "File storage"
 msgstr "Хранилище"
 
-#: .\blog\templates\blog\base.html:38 .\storage\templates\storage\base.html:14
+#: .\blog\templates\blog\base.html:48 .\storage\templates\storage\base.html:14
 msgid "Log out"
 msgstr ""
 
-#: .\blog\templates\blog\base.html:51 .\blog\templates\blog\upload.html:5
-#: .\blog\templates\blog\upload.html:13
-msgid "Add article"
-msgstr "Добавить статью"
-
-#: .\blog\templates\blog\base.html:60
+#: .\blog\templates\blog\base.html:87
 #: .\storage\templates\storage\index.html:44
 msgid "Search"
 msgstr ""
 
-#: .\blog\templates\blog\index.html:25
-msgid "More"
-msgstr "Подробнее"
-
-#: .\blog\templates\blog\index.html:27
-msgid "Edit"
-msgstr "Изменить"
-
-#: .\blog\templates\blog\index.html:28
-msgid "Delete"
+#: .\blog\templates\blog\base.html:93
+msgid "Selected tag"
 msgstr ""
 
-#: .\blog\templates\blog\post.html:5 .\blog\templates\blog\update.html:5
+#: .\blog\templates\blog\edit.html:5 .\blog\templates\blog\post.html:5
 #: .\blog\templates\blog\upload.html:5 .\storage\templates\storage\base.html:9
 #: .\storage\templates\storage\upload.html:7 .\templates\base.html:18
 msgid "Home"
 msgstr ""
 
-#: .\blog\templates\blog\post.html:23
-msgid "Back"
-msgstr "Назад"
-
-#: .\blog\templates\blog\update.html:5 .\blog\templates\blog\update.html:12
+#: .\blog\templates\blog\edit.html:5 .\blog\templates\blog\edit.html:10
+#: .\blog\templates\blog\post.html:9
 msgid "Edit article"
 msgstr "Изменить статью"
 
-#: .\blog\templates\blog\upload.html:34
+#: .\blog\templates\blog\index.html:6 .\blog\templates\blog\post.html:8
+#: .\blog\templates\blog\upload.html:5 .\blog\templates\blog\upload.html:11
+msgid "Add article"
+msgstr "Добавить статью"
+
+#: .\blog\templates\blog\index.html:29
+msgid "More"
+msgstr "Подробнее"
+
+#: .\blog\templates\blog\index.html:31
+msgid "Edit"
+msgstr "Изменить"
+
+#: .\blog\templates\blog\index.html:33
+msgid "Delete"
+msgstr ""
+
+#: .\blog\templates\blog\post.html:37
+msgid "Back"
+msgstr "Назад"
+
+#: .\blog\templates\blog\upload.html:32
 #: .\storage\templates\storage\upload.html:30
 msgid "Save"
 msgstr ""
 
-#: .\blog\views.py:63
+#: .\blog\views.py:21
 #, python-brace-format
 msgid "Article \"<a href=\"{href}\">{title}</a>\" created!"
 msgstr "Статья \"<a href=\"{href}\">{title}</a>\" опубликована!"
 
-#: .\blog\views.py:81
+#: .\blog\views.py:26
+#, python-brace-format
 msgid "Article \"<a href=\"{href}\">{title}</a>\" updated!"
 msgstr "Статья \"<a href=\"{href}\">{title}</a>\" изменена!"
 
-#: .\blog\views.py:93
+#: .\blog\views.py:75
+#, python-brace-format
 msgid "Post \"<b>{title}</b>\" is removed!"
 msgstr "Статья \"<b>{title}</b>\" удалена!"
+
+#: .\storage\forms.py:7
+msgid "Title:"
+msgstr "Заголовок:"
 
 #: .\storage\forms.py:8
 msgid "File notes:"
@@ -149,19 +157,19 @@ msgstr "Примечания:"
 msgid "Source:"
 msgstr "Источник:"
 
-#: .\storage\models.py:12 .\storage\templates\storage\index.html:63
+#: .\storage\models.py:15 .\storage\templates\storage\index.html:63
 msgid "File notes"
 msgstr "Примечания"
 
-#: .\storage\models.py:13 .\storage\templates\storage\index.html:59
+#: .\storage\models.py:16 .\storage\templates\storage\index.html:59
 msgid "Upload date"
 msgstr "Дата загрузки"
 
-#: .\storage\models.py:14 .\storage\templates\storage\index.html:67
+#: .\storage\models.py:17 .\storage\templates\storage\index.html:67
 msgid "Download counter"
 msgstr "Счетчик загрузок"
 
-#: .\storage\models.py:15 .\storage\templates\storage\index.html:71
+#: .\storage\models.py:18 .\storage\templates\storage\index.html:71
 msgid "Source"
 msgstr "Источник"
 
@@ -203,6 +211,12 @@ msgstr "Файл \"<b>{title}</b>\" удален!"
 #: .\templates\base.html:24 .\templates\base.html:27
 msgid "Welcome"
 msgstr "Добро пожаловать"
+
+#~ msgid "Entry:"
+#~ msgstr "Краткое описание:"
+
+#~ msgid "Content:"
+#~ msgstr "Контент:"
 
 #, fuzzy
 #~| msgid "Upload date"
