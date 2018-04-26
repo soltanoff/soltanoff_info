@@ -26,10 +26,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-# TODO: необходимо организовать защещенную передачу данных (ssl)
-# DISQUS_API_KEY = '***'
-# DISQUS_WEBSITE_SHORTNAME = '***'
-
 # CKEditor definition
 # https://github.com/django-ckeditor/django-ckeditor
 
@@ -48,6 +44,7 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'full',
         'tabSpaces': 4,
         'extraPlugins': ','.join([
+            # 'markdown',
             'uploadimage',
             'codesnippet',
             'copyformatting',
