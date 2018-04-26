@@ -14,18 +14,20 @@
     <form enctype="multipart/form-data" action="" method="post" novalidate="">{% csrf_token %}
         <fieldset class="module aligned ">
             {% for field in form %}
-            {% if field.errors %}
-            <div class="form-row errors">
+            <div class="form-row {% if field.errors %}errors{% endif %}">
                 {{ field.errors }}
-                {% else %}
-                <div class="form-row">
-                    {% endif %}
-                    <label class="required">{{ field.label }}</label>
-                    {{ field }}
-                </div>
-                {% if forloop.first %}
-            </fieldset>
+                <label class="required">{{ field.label }}</label>
+                {{ field }}
+            </div>
+            {% if forloop.first %}
+        </fieldset>
         <fieldset class="module aligned "><h2>{% trans "Content" %}</h2>
+            <!--<a href="/manage/blog/tagmodel/add/?_to_field=id&amp;_popup=1"-->
+            <!--title="Добавить ещё один объект типа "-->
+            <!--target="popup"-->
+            <!--onclick="window.open(this.href, 'name', 'width=650,height=530')">-->
+            <!--<img src="/static/admin/img/icon-addlink.svg" alt="Добавить">-->
+            <!--</a>-->
             {% endif %}
             {% endfor %}
         </fieldset>

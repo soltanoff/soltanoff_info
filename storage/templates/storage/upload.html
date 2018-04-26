@@ -16,16 +16,12 @@
         </fieldset>
         <fieldset class="module aligned "><h2>{% trans "Storage" %}</h2>
             {% endif %}
-            {% if field.errors %}
-            <div class="form-row errors">
+            <div class="form-row {% if field.errors %}errors{% endif %}">
                 {{ field.errors }}
-                {% else %}
-                <div class="form-row">
-                    {% endif %}
-                    <label class="required">{{ field.label }}</label>
-                    {{ field }}
-                </div>
-                {% endfor %}
+                <label class="required">{{ field.label }}</label>
+                {{ field }}
+            </div>
+            {% endfor %}
         </fieldset>
         <div class="submit-row"><input type="submit" value="{% trans 'Save' %}" class="default" name="_save"></div>
         <script type="text/javascript"
