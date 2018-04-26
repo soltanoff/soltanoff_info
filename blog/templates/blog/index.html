@@ -26,7 +26,8 @@
         <p>{{ post.entry|safe }}</p>
     </div>
 
-    <input type="button" onclick="location.href='{% url 'blog:post' post.id %}';" value="{% trans 'More' %} ..." class="default">
+    <input type="button" onclick="location.href='{% url 'blog:post' post.id %}';" value="{% trans 'More' %}"
+           class="default">
     {% if user.is_staff %}
     <input type="button" onclick="location.href='{% url 'blog:edit' post.id %}';" value="{% trans 'Edit' %}"
            class="default">
