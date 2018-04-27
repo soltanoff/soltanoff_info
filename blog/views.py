@@ -8,7 +8,7 @@ from django.utils.translation import gettext as _
 from django.views.decorators.csrf import csrf_protect
 from django.views.generic import DetailView, ListView, CreateView, UpdateView
 
-from blog.generic.mixins import TagMixin
+from blog.generic.mixins import TagMixin, PageMixin
 from blog.generic.views import BasePostView
 from blog.models import PostModel
 
@@ -34,14 +34,10 @@ class PostDetailView(TagMixin, DetailView):
 
 
 # TODO: soltanoff: need to save previous GET params
-class PostListView(TagMixin, ListView):
+class PostListView(TagMixin, PageMixin, ListView):
     template_name = "blog/index.html"
     model = PostModel
     context_object_name = "posts"
-    allow_empty = True
-    paginate_by = 2
-    paginate_orphans = 2
-    page_kwarg = "p"
 
     def __queryset_filter(self, **kwargs):
         if not self.queryset:
