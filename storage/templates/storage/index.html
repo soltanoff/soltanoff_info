@@ -91,7 +91,9 @@
                         </td>
                         {% if user.is_staff %}
                         <td class="field-file" valign="center" align="right">
-                            <input type="button" onclick="location.href='{% url 'storage:remove' f.id %}';" value="{% trans 'Remove' %}" />
+                            <input type="button"
+                                   onclick="location.href='{% url 'storage:remove' f.id %}';"
+                                   value="{% trans 'Remove' %}" />
                         </td>
                         {% endif %}
                     </tr>
