@@ -14,6 +14,29 @@ input[type="submit"], button {
     margin-top: -24px;
 }
 
+.object-tools a.current-page {
+    background: #447e9b;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/*
+.object-tools a.left-arrow {
+    transform: rotate(180deg);
+    background-image: url(../img/tooltag-arrowright.svg);
+    background-repeat: no-repeat;
+    background-position: right 7px center;
+    padding-right: 26px;
+}
+
+.object-tools a.right-arrow {
+    background-image: url(../img/tooltag-arrowright.svg);
+    background-repeat: no-repeat;
+    background-position: right 7px center;
+    padding-right: 26px;
+}
+*/
+
 @media (max-width: 1024px) {
     /* Basic */
 
