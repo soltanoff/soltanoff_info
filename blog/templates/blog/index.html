@@ -46,7 +46,7 @@
         <li>
             <a href="?{{ page_kwarg }}={{ page_obj.previous_page_number }}"
                class="viewsitelink"
-               style="transform: rotate(180deg);">
+               id="left-arrow">
                 &nbsp;
             </a>
         </li>
@@ -64,7 +64,8 @@
         {% if page_obj.has_next %}
         <li>
             <a href="?{{ page_kwarg }}={{ page_obj.next_page_number }}"
-               class="viewsitelink">
+               class="viewsitelink"
+               id="right-arrow">
                 &nbsp;
             </a>
         </li>

@@ -20,22 +20,14 @@ input[type="submit"], button {
     font-size: 16px;
 }
 
-/*
-.object-tools a.left-arrow {
+.object-tools a.viewsitelink#left-arrow  {
     transform: rotate(180deg);
-    background-image: url(../img/tooltag-arrowright.svg);
-    background-repeat: no-repeat;
-    background-position: right 7px center;
-    padding-right: 26px;
+    background-position: right 12px center;
 }
 
-.object-tools a.right-arrow {
-    background-image: url(../img/tooltag-arrowright.svg);
-    background-repeat: no-repeat;
-    background-position: right 7px center;
-    padding-right: 26px;
+.object-tools a.viewsitelink#right-arrow  {
+    background-position: right 12px center;
 }
-*/
 
 @media (max-width: 1024px) {
     /* Basic */
