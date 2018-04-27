@@ -44,7 +44,7 @@
     <ul class="object-tools" style="float: unset; display: inline-block">
         {% if page_obj.has_previous %}
         <li>
-            <a href="?p={{ page_obj.previous_page_number }}"
+            <a href="?{{ page_kwarg }}={{ page_obj.previous_page_number }}"
                class="viewsitelink"
                style="transform: rotate(180deg);">
                 &nbsp;
@@ -54,7 +54,7 @@
 
         {% for page_num in page_range %}
         <li>
-            <a href="?p={{ page_num }}"
+            <a href="?{{ page_kwarg }}={{ page_num }}"
                class="{% if page_obj.number == page_num %}current-page{% endif %}">
                 {{ page_num }}
             </a>
@@ -63,7 +63,7 @@
 
         {% if page_obj.has_next %}
         <li>
-            <a href="?p={{ page_obj.next_page_number }}"
+            <a href="?{{ page_kwarg }}={{ page_obj.next_page_number }}"
                class="viewsitelink">
                 &nbsp;
             </a>

@@ -35,6 +35,7 @@ class PageMixin(MultipleObjectMixin):
         elif first_page == 0:
             first_page = 1
 
+        context['page_kwarg'] = self.page_kwarg
         context['page_range'] = range(
             first_page,
             (count if count < context['page_obj'].paginator.num_pages else context['page_obj'].paginator.num_pages) + 1
