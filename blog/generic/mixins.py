@@ -19,8 +19,8 @@ class TagMixin(ContextMixin):
 
 class PageMixin(MultipleObjectMixin):
     allow_empty = True
-    paginate_by = 2
-    paginate_orphans = 2
+    paginate_by = 15
+    paginate_orphans = 5
     page_kwarg = "p"
     page_numbers_count = 5
 
