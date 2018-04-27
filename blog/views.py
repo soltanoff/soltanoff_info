@@ -11,11 +11,10 @@ from django.views.generic import DetailView, ListView, CreateView, UpdateView
 from blog.generic.mixins import TagMixin, PageMixin
 from blog.generic.views import BasePostView
 from blog.models import PostModel
+from generics.mixins import SearchMixin, QueryMixin
 
 
 # TODO: soltanoff: use the thumbnails for article, add new field to the PostModel: `icon`
-
-
 class PostCreateView(BasePostView, CreateView):
     template_name = "blog/upload.html"
     success_message = _(u"Article \"<a href=\"{href}\">{title}</a>\" created!")
@@ -34,16 +33,10 @@ class PostDetailView(TagMixin, DetailView):
 
 
 # TODO: soltanoff: need to save previous GET params
-class PostListView(TagMixin, PageMixin, ListView):
+class PostListView(TagMixin, PageMixin, SearchMixin, QueryMixin, ListView):
     template_name = "blog/index.html"
     model = PostModel
     context_object_name = "posts"
-
-    def __queryset_filter(self, **kwargs):
-        if not self.queryset:
-            return PostModel.objects.filter(**kwargs)
-        else:
-            return self.queryset.filter(**kwargs)
 
     def get(self, request, *args, **kwargs):
         search_line = request.GET.get('q', None)
@@ -51,11 +44,10 @@ class PostListView(TagMixin, PageMixin, ListView):
 
         cond = {}
         if search_line:
-            # TODO: сделать поиск по нескольким полям в стиле SQL-конструкции `LIKE`
             cond['title__icontains'] = search_line
         if tag:
             cond['tags'] = tag
-        self.queryset = self.__queryset_filter(**cond)
+        self.queryset = self._queryset_filter(**cond)
         return super(PostListView, self).get(redirect, *args, **kwargs)
 
 

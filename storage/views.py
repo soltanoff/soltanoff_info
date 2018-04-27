@@ -9,56 +9,39 @@ from django.utils.translation import gettext as _
 from django.views.decorators.csrf import csrf_protect
 from django.views.generic import CreateView, ListView
 
+from generics.mixins import SearchMixin, QueryMixin
 from storage.forms import FileForm
 from storage.models import FileModel
 
 
 # TODO: soltanoff: use AJAX https://simpleisbetterthancomplex.com/tutorial/2016/08/29/how-to-work-with-ajax-request-with-django.html
-class FileListView(ListView):
+class FileListView(SearchMixin, QueryMixin, ListView):
     template_name = "storage/index.html"
     model = FileModel
-    queryset = FileModel.objects.all()
     context_object_name = "files"
 
-    def get_context_data(self, **kwargs):
-        context = super(FileListView, self).get_context_data(**kwargs)
-        context['search'] = self.request.GET.get('q', '')
+    def get(self, request, *args, **kwargs):
+        search_line = request.GET.get('q', None)
 
-        if context['search']:
-            self.queryset = FileModel.objects.filter(file_name__icontains=context['search'])
-        else:
-            self.queryset = FileModel.objects.all()
-        context[self.context_object_name] = self.queryset
-        return context
+        cond = {}
+        if search_line:
+            cond['file_name__icontains'] = search_line
+            # cond['notes__icontains'] = search_line
+
+        self.queryset = self._queryset_filter(**cond)
+        return super(FileListView, self).get(redirect, *args, **kwargs)
 
 
 class FileCreateView(SuccessMessageMixin, CreateView):
     template_name = "storage/upload.html"
     model = FileModel
-    form = None
+    form = FileForm
     fields = ["file_name", "notes", "file"]
     success_url = "../"
     success_message = _(u"File \"<a href=\"{href}\">{title}</a>\" uploaded!")
 
     def get_success_message(self, cleaned_data):
         return self.success_message.format(href=self.object.getUrl(), title=cleaned_data['file_name'])
-
-    def get_context_data(self, **kwargs):
-        context = super(FileCreateView, self).get_context_data(**kwargs)
-        context["form"] = self.form
-        return context
-
-    def get(self, request, *args, **kwargs):
-        self.form = FileForm()
-        return super(FileCreateView, self).get(request, *args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-        self.form = FileForm(request.POST)
-        return super(FileCreateView, self).post(request, *args, **kwargs)
-
-    def form_valid(self, form):
-        self.object = form.save()
-        return super(FileCreateView, self).form_valid(form)
 
 
 @csrf_protect
