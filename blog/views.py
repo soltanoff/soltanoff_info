@@ -32,7 +32,7 @@ class PostDetailView(TagMixin, DetailView):
     slug_field = "title"
 
 
-# TODO: soltanoff: need to save previous GET params
+# TODO: soltanoff: need to save previous GET params, inject this params to all href
 class PostListView(TagMixin, PageMixin, SearchMixin, QueryMixin, ListView):
     template_name = "blog/index.html"
     model = PostModel
