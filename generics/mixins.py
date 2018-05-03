@@ -9,6 +9,7 @@ class SearchMixin(ContextMixin):
         return context
 
 
+# TODO: polcracker: try to change ORM
 class QueryMixin(MultipleObjectMixin):
     # TODO: soltanoff: сделать поиск по нескольким полям в стиле SQL-конструкции `LIKE`
     def _queryset_filter(self, **kwargs):
