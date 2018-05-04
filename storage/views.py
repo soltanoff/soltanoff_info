@@ -22,7 +22,7 @@ class FileListView(SearchMixin, QueryMixin, ListView):
     def get(self, request, *args, **kwargs):
         search_line = request.GET.get('q', None)
 
-        cond = self._join_or(file_name__icontains=search_line, notes__icontains=search_line) if search_line else {}
+        cond = self._join_or(title__icontains=search_line, notes__icontains=search_line) if search_line else {}
         self.queryset = self._queryset_filter(cond)
         return super(FileListView, self).get(redirect, *args, **kwargs)
 
@@ -31,12 +31,12 @@ class FileCreateView(SuccessMessageMixin, CreateView):
     template_name = "storage/upload.html"
     model = FileModel
     form = FileForm
-    fields = ["file_name", "notes", "file"]
+    fields = ["title", "notes", "file"]
     success_url = "../"
     success_message = _(u"File \"<a href=\"{href}\">{title}</a>\" uploaded!")
 
     def get_success_message(self, cleaned_data):
-        return self.success_message.format(href=self.object.getUrl(), title=cleaned_data['file_name'])
+        return self.success_message.format(href=self.object.getUrl(), title=cleaned_data['title'])
 
 
 @csrf_protect
@@ -48,7 +48,7 @@ def remove(request, file_id):
         add_message(
             request,
             messages.WARNING,
-            _("File \"<b>{title}</b>\" is removed!").format(title=file.file_name)
+            _("File \"<b>{title}</b>\" is removed!").format(title=file.title)
         )
         return redirect("../../")
     else:

@@ -11,17 +11,17 @@ class FileModel(models.Model):
     class Meta:
         ordering = ['upload_date', 'count']
 
-    file_name = models.CharField(_('Title'), max_length=20)
+    title = models.CharField(_('Title'), max_length=20)
     notes = models.CharField(_('File notes'), max_length=20, null=True)
     upload_date = models.DateTimeField(_('Upload date'), null=True, default=datetime.now, blank=True)
     count = models.IntegerField(_('Download counter'), default=0)
     file = models.FileField(_('Source'), upload_to='storage/')
 
     def __unicode__(self):
-        return self.file_name
+        return self.title
 
     def __str__(self):
-        return self.file_name
+        return self.title
 
     def getUrl(self):
         return '/%s/download_file/%s/' % (StorageConfig.name, self.pk)
