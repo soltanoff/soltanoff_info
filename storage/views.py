@@ -14,7 +14,6 @@ from storage.forms import FileForm
 from storage.models import FileModel
 
 
-# TODO: soltanoff: use AJAX https://simpleisbetterthancomplex.com/tutorial/2016/08/29/how-to-work-with-ajax-request-with-django.html
 class FileListView(SearchMixin, QueryMixin, ListView):
     template_name = "storage/index.html"
     model = FileModel
@@ -26,7 +25,6 @@ class FileListView(SearchMixin, QueryMixin, ListView):
         cond = {}
         if search_line:
             cond['file_name__icontains'] = search_line
-            # cond['notes__icontains'] = search_line
 
         self.queryset = self._queryset_filter(**cond)
         return super(FileListView, self).get(redirect, *args, **kwargs)
@@ -48,7 +46,7 @@ class FileCreateView(SuccessMessageMixin, CreateView):
 @login_required
 def remove(request, file_id):
     if request.user.is_active and request.user.is_staff:
-        file = FileModel.objects.get(id=file_id)
+        file = get_object_or_404(FileModel, pk=file_id)
         file.delete()
         add_message(
             request,
