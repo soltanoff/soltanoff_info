@@ -87,7 +87,7 @@
                         <td class="field-notes" valign="center">{{ f.notes }}</td>
                         <td class="field-count" valign="center">{{ f.count }}</td>
                         <td class="field-file" valign="center">
-                            <a href="{% url 'storage:download_file' f.id %}" id="dl_file">{{ f.file }}</a>
+                            <a href="{% url 'storage:download_file' f.id %}" id="dl_file">{{ f.file_name }}</a>
                         </td>
                         {% if user.is_staff %}
                         <td class="field-file" valign="center" align="right">
