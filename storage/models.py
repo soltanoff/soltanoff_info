@@ -17,8 +17,11 @@ class FileModel(models.Model):
     count = models.IntegerField(_('Download counter'), default=0)
     file = models.FileField(_('Source'))
 
+    def __unicode__(self):
+        return self.file_name
+
     def __str__(self):
         return self.file_name
 
     def getUrl(self):
-        return '/%s/download_file/%s/' % (StorageConfig.name, self.id)
+        return '/%s/download_file/%s/' % (StorageConfig.name, self.pk)
