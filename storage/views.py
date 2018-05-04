@@ -36,7 +36,7 @@ class FileCreateView(SuccessMessageMixin, CreateView):
     success_message = _(u"File \"<a href=\"{href}\">{title}</a>\" uploaded!")
 
     def get_success_message(self, cleaned_data):
-        return self.success_message.format(href=self.object.getUrl(), title=cleaned_data['title'])
+        return self.success_message.format(href=self.object.get_url(), title=cleaned_data['title'])
 
 
 @csrf_protect

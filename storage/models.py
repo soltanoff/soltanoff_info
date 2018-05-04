@@ -23,5 +23,5 @@ class FileModel(models.Model):
     def __str__(self):
         return self.title
 
-    def getUrl(self):
+    def get_url(self):
         return '/%s/download_file/%s/' % (StorageConfig.name, self.pk)

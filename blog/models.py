@@ -37,7 +37,7 @@ class PostModel(models.Model):
     def __str__(self):
         return self.title
 
-    def getUrl(self):
+    def get_url(self):
         return '/post/%s' % self.pk
 
     def getAllContent(self):

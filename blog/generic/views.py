@@ -11,7 +11,7 @@ class BasePostView(SuccessMessageMixin, ModelFormMixin):
     fields = ["title", "tags", "entry", "content"]
 
     def get_success_message(self, cleaned_data):
-        return self.success_message.format(href=self.object.getUrl(), title=cleaned_data['title'])
+        return self.success_message.format(href=self.object.get_url(), title=cleaned_data['title'])
 
     def get_success_url(self):
-        return self.object.getUrl()
+        return self.object.get_url()
