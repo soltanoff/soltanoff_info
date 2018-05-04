@@ -22,11 +22,8 @@ class FileListView(SearchMixin, QueryMixin, ListView):
     def get(self, request, *args, **kwargs):
         search_line = request.GET.get('q', None)
 
-        cond = {}
-        if search_line:
-            cond['file_name__icontains'] = search_line
-
-        self.queryset = self._queryset_filter(**cond)
+        cond = self._join_or(file_name__icontains=search_line, notes__icontains=search_line) if search_line else {}
+        self.queryset = self._queryset_filter(cond)
         return super(FileListView, self).get(redirect, *args, **kwargs)
 
 
