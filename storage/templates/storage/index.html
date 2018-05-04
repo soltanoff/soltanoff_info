@@ -51,7 +51,7 @@
                 <table id="result_list" style="margin:auto; width:100%; height:100%;">
                     <thead>
                     <tr>
-                        <th scope="col" class="sortable column-file_name">
+                        <th scope="col" class="sortable column-title">
                             <div class="text">{% trans "Title" %}</div>
                             <div class="clear"></div>
                         </th>
@@ -82,7 +82,7 @@
                     <tbody>
                     {% for f in files %}
                     <tr class="row{{ forloop.counter }}">
-                        <th class="field-file_name" valign="center">{{ f.file_name }}</th>
+                        <th class="field-title" valign="center">{{ f.title }}</th>
                         <td class="field-upload_date nowrap" valign="center">{{ f.upload_date }}</td>
                         <td class="field-notes" valign="center">{{ f.notes }}</td>
                         <td class="field-count" valign="center">{{ f.count }}</td>
