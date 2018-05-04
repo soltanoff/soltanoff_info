@@ -107,7 +107,7 @@ ROOT_URLCONF = 'django_srv.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': ['generics/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
