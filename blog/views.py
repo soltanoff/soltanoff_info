@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages import add_message
 from django.http import Http404
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.utils.translation import gettext as _
 from django.views.decorators.csrf import csrf_protect
 from django.views.generic import DetailView, ListView, CreateView, UpdateView
@@ -55,7 +55,7 @@ class PostListView(TagMixin, PageMixin, SearchMixin, QueryMixin, ListView):
 @login_required
 def remove(request, post_id):
     if request.user.is_active and request.user.is_staff:
-        post = PostModel.objects.get(id=post_id)
+        post = get_object_or_404(PostModel, pk=post_id)
         post.delete()
         add_message(
             request,
