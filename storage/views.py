@@ -64,7 +64,7 @@ def download_file(request, file_id):
         obj.save()
 
         response = HttpResponse(obj.file, content_type='text/plain')
-        response['Content-Disposition'] = 'attachment; filename="%s"' % obj.file.name
+        response['Content-Disposition'] = 'attachment; filename="%s"' % obj.file_name
 
         return response
     else:
