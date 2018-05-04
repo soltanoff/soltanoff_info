@@ -15,7 +15,7 @@ class FileModel(models.Model):
     notes = models.CharField(_('File notes'), max_length=20, null=True)
     upload_date = models.DateTimeField(_('Upload date'), null=True, default=datetime.now, blank=True)
     count = models.IntegerField(_('Download counter'), default=0)
-    file = models.FileField(_('Source'))
+    file = models.FileField(_('Source'), upload_to='storage/')
 
     def __unicode__(self):
         return self.file_name
