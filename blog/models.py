@@ -21,6 +21,7 @@ class TagModel(models.Model):
         return self.title
 
 
+# TODO: polcracker: set `get_url` method as `url` property
 class PostModel(models.Model):
     class Meta:
         ordering = ['-datetime']
