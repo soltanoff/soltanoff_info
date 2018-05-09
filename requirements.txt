@@ -1,5 +1,6 @@
 Django>=2.0.3
 django-ckeditor==5.4.0
+django-admin-ckeditor>=1.0.0
 django-js-asset==1.0.0
 django-uploader==0.2.1
 django-uploadstatic==0.3.0
