@@ -10,6 +10,7 @@ from storage.apps import StorageConfig
 class FileModel(models.Model):
     class Meta:
         ordering = ['upload_date', 'count']
+        verbose_name = _('File')
 
     title = models.CharField(_('Title'), max_length=20)
     notes = models.CharField(_('File notes'), max_length=20, null=True)
