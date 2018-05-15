@@ -1,3 +1,21 @@
+blockquote {
+    font-style: italic;
+    font-family: Georgia, Times, "Times New Roman", serif;
+    padding: 2px 0;
+    border-style: solid;
+    border-color: #ccc;
+    border-width: 0;
+    padding-left: 20px;
+    padding-right: 8px;
+    border-left-width: 5px;
+    font-size: unset;
+    color: unset;
+}
+
+p, ol, ul, dl {
+    margin: 1em 0 1em 0;
+}
+
 td, th {
     font-size: 13px;
     line-height: 16px;
@@ -115,9 +133,11 @@ input[type=button].deleteLink:focus, input[type=button].deleteLink:hover, input[
     text-align: justify;
 }
 
+/*
 .entry p{
     padding-bottom:10px;
 }
+*/
 
 .entry p a{
     text-decoration:underline;
