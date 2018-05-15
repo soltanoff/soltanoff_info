@@ -4,6 +4,11 @@
 
 {% block breadcrumbs %}<div class="breadcrumbs"><a href="{% url 'blog:index' %}">{% trans "Home" %}</a> › {{ post.title }}</div> {% endblock %}
 
+{% block extrastyle %}
+{{ block.super }}
+{% include "article.html" %}
+{% endblock %}
+
 {% block object-tools %}
 <li><a href="{% url 'blog:upload' %}" class="addlink">{% trans "Add article" %}</a></li>
 <li><a href="{% url 'blog:edit' post.pk %}" class="viewsitelink">{% trans "Edit article" %}</a></li>
@@ -11,7 +16,7 @@
 
 {% block page %}
 <div class="post-top">
-    <div class="post-title">
+    <div class="post-title cke_editable cke_editable_themed cke_contents_ltr cke_show_borders">
         <div class="left">
             <h2 style="font-size: 25px;">{{ post.title }}</h2>
             <div style="float: left;">
