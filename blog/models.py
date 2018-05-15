@@ -9,6 +9,7 @@ from django.utils.translation import gettext_lazy as _
 class TagModel(models.Model):
     class Meta:
         ordering = ['title']
+        verbose_name = _('Tag')
 
     title = models.CharField(_('Title'), max_length=255)
     datetime = models.DateTimeField(_('Publication date'), default=datetime.now)
@@ -25,6 +26,7 @@ class TagModel(models.Model):
 class PostModel(models.Model):
     class Meta:
         ordering = ['-datetime']
+        verbose_name = _('Post')
 
     title = models.CharField(_('Title'), max_length=255)
     datetime = models.DateTimeField(_('Publication date'), default=datetime.now)
