@@ -69,7 +69,7 @@
                 <ul class="tagList">
                     {% for tag in tags %}
                     <li class="changelink">
-                        <a href="?tag={{ tag.pk }}">{{ tag.title }}</a>
+                        <a href="{% url 'blog:index' %}?tag={{ tag.pk }}">{{ tag.title }}</a>
                         <br>
                         <span class="mini quiet">{{ tag.description }}</span>
                     </li>
