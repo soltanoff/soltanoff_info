@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-26 23:07+0300\n"
+"POT-Creation-Date: 2018-05-20 16:08+0300\n"
 "PO-Revision-Date: 2018-04-13 18:50+0300\n"
 "Last-Translator: Ilya Soltanov <piccadillable@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,29 +46,48 @@ msgstr ""
 msgid "Forgotten your password or username?"
 msgstr ""
 
-#: .\blog\models.py:13 .\blog\models.py:28 .\storage\models.py:14
+#: .\blog\generic\mixins.py:62
+msgid "Page is not 'last', nor can it be converted to an int."
+msgstr ""
+
+#: .\blog\generic\mixins.py:66
+#, python-format
+msgid "Invalid page (%(page_number)s): %(message)s"
+msgstr ""
+
+#: .\blog\models.py:12
+#, fuzzy
+#| msgid "Tags"
+msgid "Tag"
+msgstr "Метки"
+
+#: .\blog\models.py:14 .\blog\models.py:31 .\storage\models.py:15
 #: .\storage\templates\storage\index.html:55
 msgid "Title"
 msgstr "Заголовок"
 
-#: .\blog\models.py:14 .\blog\models.py:29
+#: .\blog\models.py:15 .\blog\models.py:32
 msgid "Publication date"
 msgstr "Дата публикации"
 
-#: .\blog\models.py:15
+#: .\blog\models.py:16
 msgid "Description"
 msgstr ""
 
-#: .\blog\models.py:30 .\blog\templates\blog\base.html:68
-#: .\blog\templates\blog\post.html:31
+#: .\blog\models.py:29
+msgid "Post"
+msgstr "Статья"
+
+#: .\blog\models.py:33 .\blog\templates\blog\base.html:68
+#: .\blog\templates\blog\post.html:37
 msgid "Tags"
 msgstr "Метки"
 
-#: .\blog\models.py:31
+#: .\blog\models.py:34
 msgid "Entry"
 msgstr "Краткое описание"
 
-#: .\blog\models.py:32 .\blog\templates\blog\upload.html:28
+#: .\blog\models.py:35 .\blog\templates\blog\upload.html:29
 msgid "Content"
 msgstr "Контент"
 
@@ -91,85 +110,90 @@ msgstr ""
 
 #: .\blog\templates\blog\base.html:93
 msgid "Selected tag"
-msgstr ""
+msgstr "Выбранная метка"
 
 #: .\blog\templates\blog\edit.html:5 .\blog\templates\blog\post.html:5
-#: .\blog\templates\blog\upload.html:5 .\storage\templates\storage\base.html:9
-#: .\storage\templates\storage\upload.html:7 .\templates\base.html:18
+#: .\blog\templates\blog\upload.html:5 .\generics\templates\base.html:18
+#: .\storage\templates\storage\base.html:9
+#: .\storage\templates\storage\upload.html:7
 msgid "Home"
 msgstr ""
 
 #: .\blog\templates\blog\edit.html:5 .\blog\templates\blog\edit.html:10
-#: .\blog\templates\blog\post.html:9
+#: .\blog\templates\blog\post.html:14
 msgid "Edit article"
 msgstr "Изменить статью"
 
-#: .\blog\templates\blog\index.html:6 .\blog\templates\blog\post.html:8
-#: .\blog\templates\blog\upload.html:5 .\blog\templates\blog\upload.html:11
+#: .\blog\templates\blog\index.html:6 .\blog\templates\blog\post.html:13
+#: .\blog\templates\blog\upload.html:5 .\blog\templates\blog\upload.html:15
 msgid "Add article"
 msgstr "Добавить статью"
 
-#: .\blog\templates\blog\index.html:29
+#: .\blog\templates\blog\index.html:31
 msgid "More"
 msgstr "Подробнее"
 
-#: .\blog\templates\blog\index.html:31
+#: .\blog\templates\blog\index.html:36
 msgid "Edit"
 msgstr "Изменить"
 
-#: .\blog\templates\blog\index.html:33
+#: .\blog\templates\blog\index.html:40
 msgid "Delete"
 msgstr ""
 
-#: .\blog\templates\blog\post.html:37
+#: .\blog\templates\blog\post.html:44
 msgid "Back"
 msgstr "Назад"
 
-#: .\blog\templates\blog\upload.html:32
-#: .\storage\templates\storage\upload.html:30
+#: .\blog\templates\blog\upload.html:35
+msgid "Add"
+msgstr ""
+
+#: .\blog\templates\blog\upload.html:35
+msgid "Add Tag"
+msgstr "Добавить метку"
+
+#: .\blog\templates\blog\upload.html:42
+#: .\storage\templates\storage\upload.html:26
 msgid "Save"
 msgstr ""
 
-#: .\blog\views.py:21
+#: .\blog\views.py:20
 #, python-brace-format
 msgid "Article \"<a href=\"{href}\">{title}</a>\" created!"
 msgstr "Статья \"<a href=\"{href}\">{title}</a>\" опубликована!"
 
-#: .\blog\views.py:26
+#: .\blog\views.py:25
 #, python-brace-format
 msgid "Article \"<a href=\"{href}\">{title}</a>\" updated!"
 msgstr "Статья \"<a href=\"{href}\">{title}</a>\" изменена!"
 
-#: .\blog\views.py:75
+#: .\blog\views.py:63
 #, python-brace-format
 msgid "Post \"<b>{title}</b>\" is removed!"
 msgstr "Статья \"<b>{title}</b>\" удалена!"
 
-#: .\storage\forms.py:7
-msgid "Title:"
-msgstr "Заголовок:"
+#: .\generics\templates\base.html:24 .\generics\templates\base.html:27
+msgid "Welcome"
+msgstr "Добро пожаловать"
 
-#: .\storage\forms.py:8
-msgid "File notes:"
-msgstr "Примечания:"
+#: .\storage\models.py:13
+msgid "File"
+msgstr ""
 
-#: .\storage\forms.py:9
-msgid "Source:"
-msgstr "Источник:"
-
-#: .\storage\models.py:15 .\storage\templates\storage\index.html:63
+#: .\storage\models.py:16 .\storage\templates\storage\index.html:63
 msgid "File notes"
 msgstr "Примечания"
 
-#: .\storage\models.py:16 .\storage\templates\storage\index.html:59
+#: .\storage\models.py:17 .\storage\templates\storage\index.html:59
 msgid "Upload date"
 msgstr "Дата загрузки"
 
-#: .\storage\models.py:17 .\storage\templates\storage\index.html:67
+#: .\storage\models.py:18 .\storage\templates\storage\index.html:67
 msgid "Download counter"
 msgstr "Счетчик загрузок"
 
-#: .\storage\models.py:18 .\storage\templates\storage\index.html:71
+#: .\storage\models.py:19 .\storage\templates\storage\index.html:71
 msgid "Source"
 msgstr "Источник"
 
@@ -181,11 +205,11 @@ msgstr "Блог"
 msgid "Add file"
 msgstr "Загрузить файл"
 
-#: .\storage\templates\storage\index.html:94
+#: .\storage\templates\storage\index.html:96
 msgid "Remove"
 msgstr ""
 
-#: .\storage\templates\storage\index.html:103
+#: .\storage\templates\storage\index.html:105
 msgid "Count of files"
 msgstr "Количество файлов"
 
@@ -198,19 +222,24 @@ msgstr "Загрузить файл"
 msgid "Storage"
 msgstr ""
 
-#: .\storage\views.py:41
+#: .\storage\views.py:36
 #, python-brace-format
 msgid "File \"<a href=\"{href}\">{title}</a>\" uploaded!"
 msgstr "Файл \"<a href=\"{href}\">{title}</a>\" успешно загружен!"
 
-#: .\storage\views.py:73
+#: .\storage\views.py:51
 #, python-brace-format
 msgid "File \"<b>{title}</b>\" is removed!"
 msgstr "Файл \"<b>{title}</b>\" удален!"
 
-#: .\templates\base.html:24 .\templates\base.html:27
-msgid "Welcome"
-msgstr "Добро пожаловать"
+#~ msgid "Title:"
+#~ msgstr "Заголовок:"
+
+#~ msgid "File notes:"
+#~ msgstr "Примечания:"
+
+#~ msgid "Source:"
+#~ msgstr "Источник:"
 
 #~ msgid "Entry:"
 #~ msgstr "Краткое описание:"
