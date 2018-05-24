@@ -16,6 +16,7 @@ class CustomLoginView(LoginView):
         return redirect_to if redirect_to else AccountConfig.default_redirect_url
 
 
+# TODO: soltanoff: add logout page + view
 @csrf_protect
 def logout(request):
     auth.logout(request)
