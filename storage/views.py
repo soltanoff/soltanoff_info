@@ -39,7 +39,7 @@ class FileCreateView(SuccessMessageMixin, CreateView):
         return self.success_message.format(href=self.object.get_url(), title=cleaned_data['title'])
 
 
-# TODO: soltanoff: add warning window in page
+# TODO: soltanoff: add warning window in page -> http://bootboxjs.com/ http://bootboxjs.com/examples.html#bb-confirm-dialog
 @csrf_protect
 @login_required
 def remove(request, file_id):
