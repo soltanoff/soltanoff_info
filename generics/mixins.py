@@ -11,7 +11,7 @@ class SearchMixin(ContextMixin):
         return context
 
 
-# TODO: need to analyze the standart Django ORM 
+# TODO: need to analyze the standart Django ORM + best practice
 class QueryMixin(MultipleObjectMixin):
     def _queryset_filter(self, *args, **kwargs):
         if not self.queryset:
