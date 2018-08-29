@@ -17,6 +17,13 @@ from django.conf import settings
 from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
+from rest_framework import routers
+
+from api.users import views
+
+router = routers.DefaultRouter()
+router.register(r'users', views.UserViewSet)
+router.register(r'users/groups', views.GroupViewSet)
 
 urlpatterns = [
     url(r'', include('blog.urls')),
@@ -25,6 +32,8 @@ urlpatterns = [
     url(r'^manage/', admin.site.urls),
     url(r'^ckeditor/', (include('ckeditor_uploader.urls'))),
     url(r'^i18n/', include('django.conf.urls.i18n')),
+    url(r'^api/', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
