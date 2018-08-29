@@ -18,6 +18,7 @@ from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
 from rest_framework import routers
+from rest_framework.schemas import get_schema_view
 
 from api.users import views
 
@@ -32,6 +33,7 @@ urlpatterns = [
     url(r'^manage/', admin.site.urls),
     url(r'^ckeditor/', (include('ckeditor_uploader.urls'))),
     url(r'^i18n/', include('django.conf.urls.i18n')),
+    url(r'^schema/', get_schema_view(title='Test API')),
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
