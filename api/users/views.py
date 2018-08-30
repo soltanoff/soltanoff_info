@@ -14,6 +14,7 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsStaffOrReadOnly,)
+    lookup_field = 'username'
 
     @action(detail=True, renderer_classes=[renderers.StaticHTMLRenderer])
     def staff(self, request, *args, **kwargs):
@@ -22,6 +23,16 @@ class UserViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+    @action(detail=True)
+    def group_names(self, request, pk=None):
+        """
+        Returns a list of all the group names that the given
+        user belongs to.
+        """
+        user = self.get_object()
+        groups = user.groups.all()
+        return Response([group.name for group in groups])
 
 
 class GroupViewSet(viewsets.ModelViewSet):
