@@ -3,7 +3,7 @@ from rest_framework import serializers
 from storage.models import FileModel
 
 
-class FileModelSerializer(serializers.HyperlinkedModelSerializer):
+class FileSerializer(serializers.HyperlinkedModelSerializer):
     file = serializers.FileField(write_only=True)
     file_name = serializers.SerializerMethodField()
     download_link = serializers.SerializerMethodField('get_file_uri')
