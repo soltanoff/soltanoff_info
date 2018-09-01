@@ -14,7 +14,6 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsStaffOrReadOnly,)
-    lookup_field = 'username'
 
     @action(detail=True, renderer_classes=[renderers.StaticHTMLRenderer])
     def staff(self, request, *args, **kwargs):
