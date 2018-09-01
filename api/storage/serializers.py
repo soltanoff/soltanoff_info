@@ -9,7 +9,7 @@ class FileModelSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = FileModel
-        fields = ('title', 'notes', 'upload_date', 'count', 'file', 'file_name')
+        fields = ('url', 'title', 'notes', 'upload_date', 'count', 'file', 'file_name')
 
     def get_file_uri(self, obj):
         request = self.context.get('request')
