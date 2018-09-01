@@ -24,7 +24,7 @@ class UserViewSet(viewsets.ModelViewSet):
         serializer.save(owner=self.request.user)
 
     @action(detail=True)
-    def group_names(self, request, pk=None):
+    def group_names(self, request, *args, **kwargs):
         """
         Returns a list of all the group names that the given
         user belongs to.
