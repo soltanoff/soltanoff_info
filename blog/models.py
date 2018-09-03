@@ -43,5 +43,5 @@ class PostModel(models.Model):
     def url(self):
         return '/post/%s' % self.pk
 
-    def getAllContent(self):
+    def get_all_content(self):
         return ''.join(map(lambda x: '%s' % str(x), (self.entry, self.content)))
