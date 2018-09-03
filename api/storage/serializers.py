@@ -15,7 +15,7 @@ class FileSerializer(serializers.HyperlinkedModelSerializer):
 
     def get_file_uri(self, obj):
         request = self.context.get('request')
-        return request.build_absolute_uri(obj.get_url())
+        return request.build_absolute_uri(obj.url)
 
     def get_file_name(self, obj):
         return obj.file_name
