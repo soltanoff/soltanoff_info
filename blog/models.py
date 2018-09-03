@@ -22,7 +22,6 @@ class TagModel(models.Model):
         return self.title
 
 
-# TODO: polcracker: set `get_url` method as `url` property
 class PostModel(models.Model):
     class Meta:
         ordering = ['-datetime']
@@ -40,7 +39,8 @@ class PostModel(models.Model):
     def __str__(self):
         return self.title
 
-    def get_url(self):
+    @property
+    def url(self):
         return '/post/%s' % self.pk
 
     def getAllContent(self):
