@@ -20,8 +20,8 @@ class UserViewSet(viewsets.ModelViewSet):
         user = self.get_object()
         return Response(user.is_staff)
 
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+    # def perform_create(self, serializer):
+    #     serializer.save(owner=self.request.user)
 
     @action(detail=True)
     def group_names(self, request, *args, **kwargs):
