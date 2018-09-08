@@ -1,5 +1,4 @@
 from rest_framework import viewsets, permissions
-from rest_framework.parsers import FileUploadParser
 
 from api.permissions import IsStaffOrReadOnly
 from api.storage.serializers import FileSerializer
