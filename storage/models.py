@@ -28,5 +28,6 @@ class FileModel(models.Model):
     def file_name(self):
         return self.file.name[len(StorageConfig.upload_to):]
 
-    def get_url(self):
+    @property
+    def url(self):
         return '/%s/download_file/%s/' % (StorageConfig.name, self.pk)
