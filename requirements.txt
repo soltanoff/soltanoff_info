@@ -1,4 +1,4 @@
-Django==2.0.3
+Django==2.0.8
 django-ckeditor
 django-admin-ckeditor
 django-js-asset==1.0.0
