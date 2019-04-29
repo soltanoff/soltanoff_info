@@ -82,6 +82,7 @@ REST_FRAMEWORK = {
 }
 
 INSTALLED_APPS = [
+    'blog_v2.apps.BlogV2Config',
     'blog.apps.BlogConfig',
     'account.apps.AccountConfig',
     'storage.apps.StorageConfig',

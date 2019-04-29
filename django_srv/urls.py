@@ -23,6 +23,7 @@ from api.routers import router as api_router
 
 urlpatterns = [
     url(r'', include('blog.urls')),
+    url(r'^v2', include('blog_v2.urls')),
     url(r'^accounts/', include('account.urls')),
     url(r'^storage/', include('storage.urls')),
     url(r'^manage/', admin.site.urls),

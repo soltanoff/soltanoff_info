@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load i18n admin_urls static admin_list staticfiles %}
+
+{% block extrastyle %}
+<link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous">
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static 'admin/css/changelists.css' %}"/>
+{% if cl.formset %}
+<link rel="stylesheet" type="text/css" href="{% static 'admin/css/forms.css' %}"/>
+{% endif %}
+{% if cl.formset or action_form %}
+<script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+{% endif %}
+{{ media.css }}
+{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+{{ media.js }}
+{% endblock %}
+
+{% block userlinks %}
+{% if user.is_staff %} <a href="{% url 'admin:index' %}">{% trans "Manage" %}</a> / {% endif %}
+<a href="{% url 'account:logout' %}">{% trans "Log out" %}</a>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "extrastyle.html" %}
+{% load i18n admin_urls static admin_list admin_modify staticfiles %}
+
+
+{% block content %}
+<div id="app">
+    <h1>Article storage</h1>
+    <div id="content-main">
+        <div class="module" id="changelist">
+            <div id="toolbar">
+                <form id="changelist-search" method="get">
+                    <div><!-- DIV needed for valid HTML -->
+                        <label for="searchbar"><img src="{% static 'admin/img/search.svg' %}" alt="Search"/></label>
+                        <input type="text" style="width:auto; box-sizing: unset;" name="q" value="{{ search }}"
+                               id="searchbar" autofocus/>
+                        <input type="submit" value="{% trans 'Search' %}"/>
+                    </div>
+                </form>
+            </div>
+            {% include "main_content.html" %}
+        </div>
+    </div>
+    <div class="loading" v-if="loading">Loading&#8230;</div>
+</div>
+<br class="clear"/>
+{% include "body_scripts.html" %}
+{% endblock %}

@@ -1,0 +1,217 @@
+blockquote {
+    font-style: italic;
+    font-family: Georgia, Times, "Times New Roman", serif;
+    padding: 2px 0;
+    border-style: solid;
+    border-color: #ccc;
+    border-width: 0;
+    padding-left: 20px;
+    padding-right: 8px;
+    border-left-width: 5px;
+    font-size: unset;
+    color: unset;
+}
+
+p, ol, ul, dl {
+    margin: 1em 0 1em 0;
+}
+
+td, th {
+    font-size: 13px;
+    line-height: 16px;
+    border-bottom: 1px solid #eee;
+    vertical-align: unset;
+    text-align: center;
+    padding: 8px;
+    font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+}
+
+#content {
+    max-width: 862px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#changelist-search label {
+    line-height: unset;
+    align-self: center;
+}
+
+#changelist #toolbar form #searchbar {
+    -webkit-flex: 1 0 auto;
+    flex: 1 0 auto;
+    width: 0;
+    height: 19px;
+    margin: 0 10px 0 6px;
+    align-self: center;
+}
+
+.button, input[type=submit], input[type=button], .text-block input, a.button {
+    background: #79aec8;
+    padding: 6px 15px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.button.default, input[type=button].default, .submit-row input.default {
+    float: right;
+    border: none;
+    font-weight: 400;
+    background: #417690;
+    text-transform: uppercase;
+}
+
+input.deleteLink {
+    display: block;
+    background: #ba2121;
+    border-radius: 4px;
+    padding: 10px 15px;
+    height: 15px;
+    line-height: 15px;
+    color: #fff;
+}
+
+input[type=button].default:focus, input[type=button].default:hover, input[type=button].default:active {
+    background: #205067;
+}
+
+input[type=button].deleteLink:focus, input[type=button].deleteLink:hover, input[type=button].deleteLink:active {
+    background: #a41515;
+}
+
+#changelist #toolbar {
+    padding: 8px 10px;
+    margin-bottom: 15px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    background: #f8f8f8;
+    color: #966;
+}
+
+.post{
+    width:100%;
+    margin:0 0 10px 0;
+}
+
+.post-top{
+    width:100%;
+}
+
+.post-title{
+    width:100%;
+    overflow:hidden;
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+}
+
+.post-title .left h2{
+    font-size:20px;
+    color:#000;
+    font-weight:normal;
+    padding: 0px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.post-title .left p {
+    font-size: 12px;
+    margin-top: 4px;
+    color: #444;
+    clear: both;
+}
+
+.post-title .left {
+    color:#000;
+}
+
+.entry{
+  line-height:20px;
+    font-size:15px;
+    color: #222222;
+    text-align: justify;
+}
+
+/*
+.entry p{
+    padding-bottom:10px;
+}
+*/
+
+.entry p a{
+    text-decoration:underline;
+}
+
+.entry p a:hover {
+    text-decoration:none;
+}
+
+.postmetadata{
+    overflow:hidden;
+    text-align:center;
+    // border-bottom: 1px dotted #ccc;
+    padding: 0px 0px 10px 0px;
+}
+
+.postmetadata a{
+    color: #447e9b;
+    font-size:12px;
+
+    font-weight:bold;
+}
+
+.entry strong{
+    color:#222222;
+}
+
+.text-block {
+    padding: 12px 14px;
+    margin: 0 0 20px;
+    background: #f8f8f8;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    // text-align: right;
+    overflow: hidden;
+}
+
+body.popup .text-block {
+    overflow: auto;
+}
+
+.text-block input {
+    height: 35px;
+    line-height: 15px;
+    margin: 0 0 0 5px;
+    text-transform: uppercase;
+}
+
+.text-block input.default {
+    margin: 0 0 0 8px;
+    text-transform: uppercase;
+}
+
+.text-block p {
+    margin: 0.3em;
+}
+
+.text-block p.deletelink-box {
+    float: left;
+    margin: 0;
+}
+
+.text-block a.deletelink {
+    display: block;
+    background: #ba2121;
+    border-radius: 4px;
+    padding: 10px 15px;
+    height: 15px;
+    line-height: 15px;
+    color: #fff;
+}
+
+.text-block a.deletelink:focus,
+.text-block a.deletelink:hover,
+.text-block a.deletelink:active {
+    background: #a41515;
+}
