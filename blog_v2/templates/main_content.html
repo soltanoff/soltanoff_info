@@ -6,7 +6,7 @@
             <div class="post-top">
                 <div class="post-title">
                     <div class="left">
-                        <h2><a href="">${ article.title }</a></h2>
+                        <h2><a v-bind:href="article.url">${ article.title }</a></h2>
                         <div style="float: left;">
                             <p>${ article.datetime }</p>
                         </div>
@@ -15,11 +15,7 @@
                     </div>
                 </div>
             </div>
-
-            <div class="entry">
-                <p>${ article.entry }</p>
-            </div>
+            <div class="entry"><span v-html="article.entry"></span></div>
         </div>
     </div>
 </div>
-<p class="paginator">{% trans "Count of articles" %}: ${articles.length}</p>

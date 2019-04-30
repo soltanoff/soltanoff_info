@@ -1,27 +1,127 @@
-{% extends "extrastyle.html" %}
-{% load i18n admin_urls static admin_list admin_modify staticfiles %}
+{% extends "base.html" %}
+
+
+{% load i18n admin_urls static admin_list %}
+
+
+{% block extrastyle %}
+{{ block.super }}
+<!--star: code highlighting-->
+<link type="text/css" rel="stylesheet"
+      href="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/styles/monokai_sublime.css' %}">
+<script src="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js' %}"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!--end: code highlighting-->
+
+<link rel="stylesheet" type="text/css" href="{% static 'admin/css/changelists.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'admin/css/widgets.css' %}"/>
+{% if cl.formset %}
+<link rel="stylesheet" type="text/css" href="{% static 'admin/css/forms.css' %}"/>
+{% endif %}
+{% if cl.formset or action_form %}
+<script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+{% endif %}
+{{ media.css }}
+{% if not actions_on_top and not actions_on_bottom %}
+<style>#changelist table thead th:first-child {width: inherit}</style>
+{% endif %}
+<link rel="stylesheet" href="{% static 'css/modify_blog.css' %}">
+<link rel="stylesheet" href="{% static 'css/tags.css' %}">
+{% endblock %}
+
+
+{% block responsive %}
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<link rel="stylesheet" type="text/css" href="{% static 'admin/css/responsive.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+{% if LANGUAGE_BIDI %}
+<link rel="stylesheet" type="text/css" href="{% static 'admin/css/responsive_rtl.css' %}"/>{% endif %}
+{% endblock %}
+
+
+{% block extrahead %}
+{{ block.super }}
+{{ media.js }}
+{% endblock %}
+
+
+{% block userlinks %}
+{% if user.is_staff %}<a href="{% url 'admin:index' %}">{% trans "Manage" %}</a> /{% endif %}
+<a href="{% url 'storage:index' %}">{% trans "File storage" %}</a>
+{% if user.get_short_name or user.get_username %}
+/ <a href="{% url 'account:logout' %}">{% trans "Log out" %}</a>
+{% else %}
+/ <a href="{% url 'account:login' %}">{% trans "Log in" %}</a>
+{% endif %}
+{% endblock %}
+
+
+{% load staticfiles %}
 
 
 {% block content %}
+<h1>Article storage</h1>
 <div id="app">
-    <h1>Article storage</h1>
     <div id="content-main">
+        {% if user.is_staff %}
+        <ul class="object-tools">
+            {% block object-tools %}
+            {% endblock %}
+        </ul>
+        {% endif %}
+
+        <div v-if="tags" id="content-related">
+            <div class="module" id="recent-actions-module">
+                <h2>{% trans 'Tags' %}</h2>
+                <ul class="tagList">
+                    <li class="changelink" v-for="tag in tags">
+                        <a href="">${ tag.title }</a>
+                        <br>
+                        <span class="mini quiet">${ tag.description }</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
         <div class="module" id="changelist">
             <div id="toolbar">
                 <form id="changelist-search" method="get">
                     <div><!-- DIV needed for valid HTML -->
                         <label for="searchbar"><img src="{% static 'admin/img/search.svg' %}" alt="Search"/></label>
-                        <input type="text" style="width:auto; box-sizing: unset;" name="q" value="{{ search }}"
-                               id="searchbar" autofocus/>
+                        <input type="text" style="width:auto" name="q" value="{{ search }}" id="searchbar" autofocus/>
                         <input type="submit" value="{% trans 'Search' %}"/>
                     </div>
                 </form>
+                {% if current_tags %}
+                <div id="tags">
+                    <ul class="object-tools">
+                        <li style="margin-left: 0px;">{% trans "Selected tag" %}:</li>
+                        <li><a href="/">{{ current_tags }}</a></li>
+                    </ul>
+                </div>
+                {% endif %}
             </div>
-            {% include "main_content.html" %}
         </div>
+
+        {% include "main_content.html" %}
+
+        {% block pagination %}
+        <div style="text-align: center;" v-if="count_pages">
+            <br>
+            <ul class="object-tools" style="float: unset; display: inline-block">
+                <li v-if="previous_page"><a href="" class="viewsitelink" id="left-arrow">&nbsp;</a></li>
+                <li v-for="page_num in count_pages">
+                    <a href="" class="current-page" v-if="page_num == current_page">${ page_num }</a>
+                    <a href="" class="" v-if="page_num != current_page">${ page_num }</a>
+                </li>
+                <li v-if="next_page"><a href="" class="viewsitelink" id="right-arrow">&nbsp;</a></li>
+            </ul>
+        </div>
+        {% endblock %}
+
+        <div class="loading" v-if="loading">Loading&#8230;</div>
+        <br class="clear"/>
+        {% include "body_scripts.html" %}
     </div>
-    <div class="loading" v-if="loading">Loading&#8230;</div>
 </div>
-<br class="clear"/>
-{% include "body_scripts.html" %}
 {% endblock %}
