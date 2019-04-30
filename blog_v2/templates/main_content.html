@@ -16,6 +16,21 @@
                 </div>
             </div>
             <div class="entry"><span v-html="article.entry"></span></div>
+
+            <input type="button"
+                   onclick="location.href='';"
+                   value="{% trans 'More' %}"
+                   class="default">
+            {% if user.is_staff %}
+            <input type="button"
+                   onclick="location.href='';"
+                   value="{% trans 'Edit' %}"
+                   class="default">
+            <input type="button"
+                   onclick="location.href='';"
+                   value="{% trans 'Delete' %}"
+                   class="deleteLink">
+            {% endif %}
         </div>
     </div>
 </div>

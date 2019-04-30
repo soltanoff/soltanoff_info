@@ -65,8 +65,7 @@
     <div id="content-main">
         {% if user.is_staff %}
         <ul class="object-tools">
-            {% block object-tools %}
-            {% endblock %}
+            <li><a href="{% url 'blog:upload' %}" class="addlink">{% trans "Add article" %}</a></li>
         </ul>
         {% endif %}
 
@@ -106,7 +105,7 @@
         {% include "main_content.html" %}
 
         {% block pagination %}
-        <div style="text-align: center;" v-if="count_pages">
+        <div style="text-align: center;" v-if="count_pages > 1">
             <br>
             <ul class="object-tools" style="float: unset; display: inline-block">
                 <li v-if="previous_page"><a href="" class="viewsitelink" id="left-arrow">&nbsp;</a></li>
