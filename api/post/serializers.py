@@ -4,11 +4,6 @@ from blog.models import PostModel, TagModel
 
 
 class PostSerializer(serializers.HyperlinkedModelSerializer):
-    entry = serializers.Field(write_only=True)
-
-    # content = serializers.HyperlinkedIdentityField(view_name='post-content', format='html', read_only=True)
-    # tags = serializers.HyperlinkedRelatedField(many=True, view_name='tag-detail', read_only=True)
-
     class Meta:
         model = PostModel
         fields = ('url', 'title', 'datetime', 'tags', 'entry', 'content')
