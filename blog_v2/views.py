@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView
 
 
-class ServiceView(TemplateView):
+class BlogV2View(TemplateView):
     template_name = "index.html"
