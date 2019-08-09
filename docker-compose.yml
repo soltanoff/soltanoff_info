@@ -1,0 +1,48 @@
+version: "3"
+services:
+    soltanoff_info:
+        image: soltanoff_info
+        build:
+            context: .
+            dockerfile: dockerfiles/soltanoff_info.Dockerfile
+        volumes:
+          - ./data:/soltanoff_info/data
+        expose:
+          - "8000"
+        restart: unless-stopped
+        command: python manage.py runserver 0.0.0.0:8000
+        depends_on:
+            - migration
+
+    migration:
+        image: soltanoff_info
+        build:
+            context: .
+            dockerfile: dockerfiles/soltanoff_info.Dockerfile
+        volumes:
+          - ./data:/soltanoff_info/data
+          - ./static:/soltanoff_info/static
+        command: bash -c "./wait-for-it.sh -t 20 db:3306 | python manage.py collectstatic --noinput && python manage.py migrate"
+
+    nginx:
+        image: nginx:1.13.3
+        ports:
+          - "8000:8000"
+        volumes:
+          - ./nginx:/etc/nginx/conf.d
+          - ./static:/static
+        depends_on:
+          - soltanoff_info
+
+    mysql:
+        image: mysql:5.7
+        restart: always
+        environment:
+            MYSQL_DATABASE: 'pyftp_db'
+            MYSQL_USER: 'dbuser'
+            MYSQL_PASSWORD: 'dbpassword'
+            MYSQL_HOST: '%'
+            MYSQL_ROOT_PASSWORD: 'dbpassword'
+            MYSQL_ROOT_HOST: '%'
+        ports:
+          - '3306:3306'
