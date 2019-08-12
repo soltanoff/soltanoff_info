@@ -11,7 +11,7 @@ Create django\_srv\local\_settings.py with following content:
 
 SECRET_KEY = 'Your secret key'
 
-DEBUG = True  # False if your want to use fastpost in production
+DEBUG = True  # False if your want to use in production
 
 ALLOWED_HOSTS = []  # for development
 ALLOWED_HOSTS = ['*']  # for docker-compose
